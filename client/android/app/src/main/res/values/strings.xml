@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Push Provisioning Sample</string>
+
+    <!-- main push provisioning flow -->
+    <string name="cards_eligible_for_push_provisioning">%d card(s) eligible for push provisioning!</string>
+    <string name="no_eligible_cards">no eligible cards</string>
+    <string name="all_eligible_cards_are_already_tokenized">all eligible cards are already tokenized</string>
+    <string name="success_card_token_id">success! card token id: %1$s</string>
+    <string name="push_provisioning_error">error! %1$s: %2$s</string>
+    <!-- /main push provisioning flow -->
+
+    <string name="no_emulators">Push provisioning doesn\'t work on emulators</string>
+    <string name="card_successfully_provisioned_from_yellow_path">card successfully provisioned from yellow path!</string>
+</resources>

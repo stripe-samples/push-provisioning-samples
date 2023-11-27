@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".SampleApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PushProvisioning"
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.stripe.example.metadata.backend_url"
+            android:value="${BACKEND_URL}" />
+        <meta-data
+            android:name="com.stripe.example.metadata.backend_username"
+            android:value="${BACKEND_USERNAME}" />
+        <meta-data
+            android:name="com.stripe.example.metadata.backend_password"
+            android:value="${BACKEND_PASSWORD}" />
+
+        <!-- TODO: do we need this to be able to launch from wallet? -->
+<!--        <meta-data-->
+<!--            android:name="com.google.android.gms.wallet.api.enabled"-->
+<!--            android:value="true" />-->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <!-- https://techdocs.mastercard.com/bundle/m_MIIG/page/c_MIIG_IssuerMobileBankingAppAssets.html -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.stripe.android.pushprovisioning.action.OPEN_ISSUER_APP" />
+
+                <!-- https://developers.google.com/pay/issuers/tsp-integration/app-to-app-idv#app_manifest -->
+                <category android:name="android.intent.category.DEFAULT" />
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

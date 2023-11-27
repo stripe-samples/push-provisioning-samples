@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:id="@+id/card_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp" />
+
+    <!--
+     See Google's Brand Guidelines for this type of "Add to Google Pay" button:
+     https://developers.google.com/pay/issuers/apis/push-provisioning/android/branding-guidelines
+     -->
+    <include
+        android:id="@+id/add_to_google_pay_button"
+        layout="@layout/add_to_googlepay_button"
+        android:layout_width="200sp"
+        android:layout_height="48sp"
+        android:padding="8dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
