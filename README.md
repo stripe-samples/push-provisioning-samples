@@ -3,5 +3,5 @@
 These sample apps demonstrate one way to [Use digital wallets with Issuing](https://stripe.com/docs/issuing/cards/digital-wallets).
 
 - [Android sample](client/android)
-- [iOS sample] (not code complete)
+- iOS sample (not code complete)
 - [backend sample](server)
