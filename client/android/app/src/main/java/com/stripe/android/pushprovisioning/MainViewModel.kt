@@ -11,7 +11,10 @@ import com.google.android.gms.tapandpay.issuer.TokenInfo
 import com.stripe.android.pushprovisioning.core.detectIncorrectSigning
 import com.stripe.android.pushprovisioning.network.BackendApi
 import com.stripe.android.pushprovisioning.network.Card
+import com.stripe.android.pushprovisioning.network.CardsResponse
 import kotlinx.coroutines.tasks.await
+import retrofit2.Response
+import java.io.IOException
 
 
 class MainViewModel : ViewModel() {
@@ -19,11 +22,18 @@ class MainViewModel : ViewModel() {
     private val app: SampleApp = SampleApp.instance
     private val backendApi: BackendApi = app.backendApi
 
-    suspend fun getEligibleCardsByStatus(tapAndPayClient: TapAndPayClient): EligibleCards {
-        val cardsResponse = backendApi.availableCards()
+    suspend fun getEligibleCardsByStatus(tapAndPayClient: TapAndPayClient): EligibleCardsResponse {
+        val cardsResponse: Response<CardsResponse>
+        try {
+            cardsResponse = backendApi.availableCards()
+        } catch (ioe: IOException) {
+            return EligibleCardsResponse.Failure(ioe)
+        }
         if (!cardsResponse.isSuccessful) {
-            Log.d(TAG, "Error fetching cards: ${cardsResponse.raw().code} ${cardsResponse.errorBody()?.string()}")
-            return EligibleCards(emptyList(), emptyList())
+            val errorMessage = "Error fetching cards: ${cardsResponse.raw().code} ${cardsResponse.errorBody()?.string()}"
+            val ex = Exception(errorMessage)
+            Log.e(TAG, null, ex)
+            return EligibleCardsResponse.Failure(ex)
         }
         val cards: List<Card> = cardsResponse.body()!!.data
         val eligibleCards = cards.filter { card ->
@@ -36,7 +46,7 @@ class MainViewModel : ViewModel() {
                 CardTokenizationStatus(card, status)
             }
             .partition { (_, status) -> status is TokenizationStatus.NotTokenized }
-        return EligibleCards(notYetTokenized, alreadyTokenized)
+        return EligibleCardsResponse.Success(notYetTokenized, alreadyTokenized)
     }
 
     // Retrieve a list of all of your matching cards already present on the device to check their status. See
@@ -76,6 +86,17 @@ data class EligibleCards(
     val notYetTokenized: List<CardTokenizationStatus>,
     val alreadyTokenized: List<CardTokenizationStatus>,
 )
+
+sealed interface EligibleCardsResponse {
+    data class Success(val eligibleCards: EligibleCards) : EligibleCardsResponse {
+        constructor(
+            notYetTokenized: List<CardTokenizationStatus>,
+            alreadyTokenized: List<CardTokenizationStatus>
+        ) : this(EligibleCards(notYetTokenized, alreadyTokenized))
+    }
+
+    data class Failure(val exception: Exception) : EligibleCardsResponse
+}
 
 sealed interface TokenizationStatus {
     data object Tokenized : TokenizationStatus

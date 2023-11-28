@@ -5,6 +5,7 @@
     <string name="cards_eligible_for_push_provisioning">%d card(s) eligible for push provisioning!</string>
     <string name="no_eligible_cards">no eligible cards</string>
     <string name="all_eligible_cards_are_already_tokenized">all eligible cards are already tokenized</string>
+    <string name="unknown_error">unknown error</string>
     <string name="success_card_token_id">success! card token id: %1$s</string>
     <string name="push_provisioning_error">error! %1$s: %2$s</string>
     <!-- /main push provisioning flow -->

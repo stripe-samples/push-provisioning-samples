@@ -49,8 +49,18 @@ class MainActivity : AppCompatActivity() {
         val tapAndPayClient = TapAndPay.getClient(this)
 
         lifecycleScope.launch {
-            val (notYetTokenized, alreadyTokenized) = viewModel.getEligibleCardsByStatus(tapAndPayClient)
+            val eligibleCardsByStatus = viewModel.getEligibleCardsByStatus(tapAndPayClient)
             binding.progressBar.isInvisible = true
+
+            val (notYetTokenized, alreadyTokenized) = when (eligibleCardsByStatus) {
+                is EligibleCardsResponse.Success -> eligibleCardsByStatus.eligibleCards
+                is EligibleCardsResponse.Failure -> {
+                    binding.cardPicker.isInvisible = true
+                    binding.resultPlaceholder.text =
+                        eligibleCardsByStatus.exception.localizedMessage ?: getString(R.string.unknown_error)
+                    return@launch
+                }
+            }
 
             if (notYetTokenized.isEmpty()) {
                 binding.cardPicker.isInvisible = true
