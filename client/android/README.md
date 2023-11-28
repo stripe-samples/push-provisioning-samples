@@ -23,6 +23,7 @@ sections can be implemented.
    - `SAMPLE_PP_BACKEND_PASSWORD`
    - See [remixing the sample Glitch project](#remix-the-sample-backend-on-glitch) for what these values should be if you use the provided sample backend.
 9. Open the Gradle project inside Android Studio and let the Gradle sync complete.
+10. If `SAMPLE_PP_BACKEND_URL` doesn't start with `https://`, you'll likely need to [configure your app to allow cleartext traffic](https://stackoverflow.com/a/50834600/272132), but please be **careful about doing this for production** builds.
 
 ### Deploy the android app
 
