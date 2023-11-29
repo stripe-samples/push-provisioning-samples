@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/reloader'
 require 'stripe'
 require 'dotenv'
 require 'json'
@@ -18,8 +19,7 @@ Stripe.api_key = ENV['STRIPE_LIVE_SECRET_KEY']
 
 set :port, 4242
 
-# Listens to all network interfaces. This allows any device on your
-# network to connect.
+# Listens to all network interfaces. This allows any device on your network to connect.
 set :bind, '0.0.0.0'
 
 $stdout.sync = true # Get puts to show up in heroku logs
