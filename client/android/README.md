@@ -38,7 +38,7 @@ We provide a sample backend hosted on Glitch, allowing you to easily test an int
 1. [Open the Glitch project](https://glitch.com/edit/#!/stripe-push-provisioning-example-backend).
 2. Click on "Remix", on the top right.
 3. In your newly remixed Glitch project, open the `.env` file in the left sidebar.
-4. Set your [Stripe livemode secret key](https://dashboard.stripe.com/apikeys) as the `STRIPE_LIVE_SECRET_KEY` field in `.env`.
+4. Set your [Stripe livemode secret key](https://dashboard.stripe.com/apikeys) as the `STRIPE_SECRET_KEY` field in `.env`.
 5. Set your [Stripe livemode cardholder ID](https://dashboard.stripe.com/issuing/cardholders) as the `CARDHOLDER_ID` field in `.env`.
 6. Set the `USERNAME` and `PASSWORD` fields to values of your choice in `.env`.
 7. Set the same values for `SAMPLE_PP_BACKEND_USERNAME` and `SAMPLE_PP_BACKEND_PASSWORD` in the `gradle.properties`.

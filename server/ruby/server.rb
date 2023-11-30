@@ -15,7 +15,7 @@ Stripe.set_app_info(
   version: '0.0.1',
   url: 'https://github.com/stripe-samples/push-provisioning'
 )
-Stripe.api_key = ENV['STRIPE_LIVE_SECRET_KEY']
+Stripe.api_key = ENV['STRIPE_SECRET_KEY']
 
 set :port, 4242
 
