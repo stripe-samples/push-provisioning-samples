@@ -17,7 +17,7 @@ sections can be implemented.
 5. [Request access](https://stripe.com/docs/issuing/cards/digital-wallets?platform=Android#request-access)
 6. Download Google's [private SDK](https://developers.google.com/pay/issuers/apis/push-provisioning/android/releases)
 7. Unarchive it to the `./tapandpay_sdk/` directory, (sibling of  `app`), so, you will have a directory structure like `./tapandpay_sdk/com/google/android/gms/...` from the root of the Gradle project.
-8. In the `gradle.properties`, configure the following to match your backend.
+8. In the `gradle.properties`, configure the following to match your backend:
    - `SAMPLE_PP_BACKEND_URL`
    - `SAMPLE_PP_BACKEND_USERNAME`
    - `SAMPLE_PP_BACKEND_PASSWORD`
@@ -45,7 +45,7 @@ We provide a sample backend hosted on Glitch, allowing you to easily test an int
 8. Your backend implementation should now be running. You can see the logs by clicking on "Logs" in the bottom bar.
 9. In Glitch, click "Share" then copy the "Live site" URL to use as the value for `SAMPLE_PP_BACKEND_URL` in the `gradle.properties`.
 
-### Relevant documentation
+## Relevant documentation
 - [Use digital wallets with Issuing](https://stripe.com/docs/issuing/cards/digital-wallets?platform=Android)
 - [Android Push Provisioning API](https://developers.google.com/pay/issuers/apis/push-provisioning/android)
 - [Test Cases](https://developers.google.com/pay/issuers/apis/push-provisioning/android/test-cases)
