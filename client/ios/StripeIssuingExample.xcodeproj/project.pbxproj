@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D3C523C2B02CF12008AF8EE /* CardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C523B2B02CF12008AF8EE /* CardPage.swift */; };
+		3D3C523F2B02D212008AF8EE /* CardPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3C523D2B02D212008AF8EE /* CardPage.xib */; };
+		3DB86BA52ADDEC0900127434 /* CardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB86BA42ADDEC0900127434 /* CardsResponse.swift */; };
+		3DBD4A4F2B1943A000DD41BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD4A4E2B1943A000DD41BD /* README.md */; };
+		9670797729D126370003B7F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797229D126370003B7F4 /* SceneDelegate.swift */; };
+		9670797829D126370003B7F4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797329D126370003B7F4 /* Card.swift */; };
+		9670797929D126370003B7F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797429D126370003B7F4 /* AppDelegate.swift */; };
+		9670797A29D126370003B7F4 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797529D126370003B7F4 /* Server.swift */; };
+		9670797B29D126370003B7F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797629D126370003B7F4 /* ViewController.swift */; };
+		9670797D29D126450003B7F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9670797C29D126450003B7F4 /* Assets.xcassets */; };
+		9670798229D1264F0003B7F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9670797E29D1264F0003B7F4 /* Main.storyboard */; };
+		9670798329D1264F0003B7F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9670798029D1264F0003B7F4 /* LaunchScreen.storyboard */; };
+		96E74BE0295BDEC1009278D7 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 96E74BDF295BDEC1009278D7 /* Stripe */; };
+		96E74BE2295BDEC1009278D7 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 96E74BE1295BDEC1009278D7 /* StripeApplePay */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D3C523B2B02CF12008AF8EE /* CardPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardPage.swift; path = Code/CardPage.swift; sourceTree = "<group>"; };
+		3D3C523E2B02D212008AF8EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/CardPage.xib; sourceTree = "<group>"; };
+		3DB86BA42ADDEC0900127434 /* CardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardsResponse.swift; path = Code/CardsResponse.swift; sourceTree = "<group>"; };
+		3DBD4A4E2B1943A000DD41BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3DF0A86E2AE496C2008DCBAD /* Server.private.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Server.private.xcconfig; path = SupportingFiles/Server.private.xcconfig; sourceTree = "<group>"; };
+		3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BuildSettings.xcconfig; path = SupportingFiles/BuildSettings.xcconfig; sourceTree = "<group>"; };
+		9670797229D126370003B7F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Code/SceneDelegate.swift; sourceTree = "<group>"; };
+		9670797329D126370003B7F4 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Code/Card.swift; sourceTree = "<group>"; };
+		9670797429D126370003B7F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Code/AppDelegate.swift; sourceTree = "<group>"; };
+		9670797529D126370003B7F4 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Server.swift; path = Code/Server.swift; sourceTree = "<group>"; };
+		9670797629D126370003B7F4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Code/ViewController.swift; sourceTree = "<group>"; };
+		9670797C29D126450003B7F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		9670797F29D1264F0003B7F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9670798129D1264F0003B7F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9670798429D1266D0003B7F4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SupportingFiles/Info.plist; sourceTree = "<group>"; };
+		9670798529D1266D0003B7F4 /* StripeIssuingExample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = StripeIssuingExample.entitlements; path = SupportingFiles/StripeIssuingExample.entitlements; sourceTree = "<group>"; };
+		96E74BBB295B8232009278D7 /* StripeIssuingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StripeIssuingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96E74BB8295B8232009278D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E74BE0295BDEC1009278D7 /* Stripe in Frameworks */,
+				96E74BE2295BDEC1009278D7 /* StripeApplePay in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9627B52829D125890063060E /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				3DB86BA42ADDEC0900127434 /* CardsResponse.swift */,
+				9670797429D126370003B7F4 /* AppDelegate.swift */,
+				9670797329D126370003B7F4 /* Card.swift */,
+				9670797229D126370003B7F4 /* SceneDelegate.swift */,
+				9670797529D126370003B7F4 /* Server.swift */,
+				9670797629D126370003B7F4 /* ViewController.swift */,
+				3D3C523B2B02CF12008AF8EE /* CardPage.swift */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
+		9627B52929D1258F0063060E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9670798029D1264F0003B7F4 /* LaunchScreen.storyboard */,
+				9670797E29D1264F0003B7F4 /* Main.storyboard */,
+				3D3C523D2B02D212008AF8EE /* CardPage.xib */,
+				9670797C29D126450003B7F4 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9627B52A29D125940063060E /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */,
+				9670798429D1266D0003B7F4 /* Info.plist */,
+				9670798529D1266D0003B7F4 /* StripeIssuingExample.entitlements */,
+				3DF0A86E2AE496C2008DCBAD /* Server.private.xcconfig */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		96E74BB2295B8232009278D7 = {
+			isa = PBXGroup;
+			children = (
+				3DBD4A4E2B1943A000DD41BD /* README.md */,
+				9627B52829D125890063060E /* Code */,
+				9627B52929D1258F0063060E /* Resources */,
+				9627B52A29D125940063060E /* SupportingFiles */,
+				96E74BBC295B8232009278D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96E74BBC295B8232009278D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96E74BBB295B8232009278D7 /* StripeIssuingExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96E74BBA295B8232009278D7 /* StripeIssuingExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96E74BCF295B8234009278D7 /* Build configuration list for PBXNativeTarget "StripeIssuingExample" */;
+			buildPhases = (
+				96E74BB7295B8232009278D7 /* Sources */,
+				96E74BB8295B8232009278D7 /* Frameworks */,
+				96E74BB9295B8232009278D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StripeIssuingExample;
+			packageProductDependencies = (
+				96E74BDF295BDEC1009278D7 /* Stripe */,
+				96E74BE1295BDEC1009278D7 /* StripeApplePay */,
+			);
+			productName = StripeIssuingExample;
+			productReference = 96E74BBB295B8232009278D7 /* StripeIssuingExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96E74BB3295B8232009278D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					96E74BBA295B8232009278D7 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = 96E74BB6295B8232009278D7 /* Build configuration list for PBXProject "StripeIssuingExample" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96E74BB2295B8232009278D7;
+			packageReferences = (
+				96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
+			);
+			productRefGroup = 96E74BBC295B8232009278D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96E74BBA295B8232009278D7 /* StripeIssuingExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96E74BB9295B8232009278D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D3C523F2B02D212008AF8EE /* CardPage.xib in Resources */,
+				9670798229D1264F0003B7F4 /* Main.storyboard in Resources */,
+				3DBD4A4F2B1943A000DD41BD /* README.md in Resources */,
+				9670798329D1264F0003B7F4 /* LaunchScreen.storyboard in Resources */,
+				9670797D29D126450003B7F4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96E74BB7295B8232009278D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D3C523C2B02CF12008AF8EE /* CardPage.swift in Sources */,
+				3DB86BA52ADDEC0900127434 /* CardsResponse.swift in Sources */,
+				9670797B29D126370003B7F4 /* ViewController.swift in Sources */,
+				9670797929D126370003B7F4 /* AppDelegate.swift in Sources */,
+				9670797829D126370003B7F4 /* Card.swift in Sources */,
+				9670797A29D126370003B7F4 /* Server.swift in Sources */,
+				9670797729D126370003B7F4 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3D3C523D2B02D212008AF8EE /* CardPage.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D3C523E2B02D212008AF8EE /* Base */,
+			);
+			name = CardPage.xib;
+			sourceTree = "<group>";
+		};
+		9670797E29D1264F0003B7F4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9670797F29D1264F0003B7F4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9670798029D1264F0003B7F4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9670798129D1264F0003B7F4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96E74BCD295B8234009278D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		96E74BCE295B8234009278D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96E74BD0295B8234009278D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/StripeIssuingExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to scan cards.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This is a test app";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96E74BD1295B8234009278D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/StripeIssuingExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SupportingFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to scan cards.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This is a test app";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96E74BB6295B8232009278D7 /* Build configuration list for PBXProject "StripeIssuingExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96E74BCD295B8234009278D7 /* Debug */,
+				96E74BCE295B8234009278D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96E74BCF295B8234009278D7 /* Build configuration list for PBXNativeTarget "StripeIssuingExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96E74BD0295B8234009278D7 /* Debug */,
+				96E74BD1295B8234009278D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96E74BDF295BDEC1009278D7 /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = Stripe;
+		};
+		96E74BE1295BDEC1009278D7 /* StripeApplePay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeApplePay;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 96E74BB3295B8232009278D7 /* Project object */;
+}

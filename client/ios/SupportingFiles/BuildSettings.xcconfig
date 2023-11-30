@@ -1,0 +1,21 @@
+//
+//  BuildSettings.xcconfig
+//  StripeIssuingExample
+//
+//  Created by Vlad Chernis on 10/21/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// /$()/ is to prevent // from being parsed as a comment
+// e.g. https:/$()/stripe-mobile-example-backend.glitch.me
+SAMPLE_PP_BACKEND_URL = http:/$()/localhost:4242
+
+// should match the username configured on the above backend
+SAMPLE_PP_BACKEND_USERNAME = cardholder
+
+// should match the password configured on the above backend
+SAMPLE_PP_BACKEND_PASSWORD = secret
+
+#include? "Server.private.xcconfig"
