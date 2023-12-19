@@ -14,6 +14,13 @@ fun getBackendUsername(): String {
 fun getBackendPassword(): String {
     return property("SAMPLE_PP_BACKEND_PASSWORD") as? String ?: ""
 }
+fun getUsesClearTextTraffic(): String {
+    return if (hasProperty("SAMPLE_PP_BACKEND_USES_CLEAR_TEXT_TRAFFIC")) {
+        property("SAMPLE_PP_BACKEND_USES_CLEAR_TEXT_TRAFFIC") as? String ?: "false"
+    } else {
+        "false"
+    }
+}
 fun getSigningKeystore(): String {
     return property("SIGNING_KEYSTORE") as? String ?: ""
 }
@@ -56,6 +63,7 @@ android {
                 "BACKEND_URL" to getBackendUrl(),
                 "BACKEND_USERNAME" to getBackendUsername(),
                 "BACKEND_PASSWORD" to getBackendPassword(),
+                "USES_CLEAR_TEXT_TRAFFIC" to getUsesClearTextTraffic(),
             )
         )
     }
