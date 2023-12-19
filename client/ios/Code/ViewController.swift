@@ -15,7 +15,7 @@ class ViewController: UIViewController, PKAddPaymentPassViewControllerDelegate, 
     private var _card: Card? = nil
     var card: Card? {
         get {
-            return _card
+            _card
         }
         set(newCard) {
             if card != newCard {
@@ -156,7 +156,7 @@ class ViewController: UIViewController, PKAddPaymentPassViewControllerDelegate, 
     }
 
     private func shouldHideAddPassButton() -> Bool {
-        return if let card = card {
+        if let card = card {
             // According to section 7.9 _In-App Provisioning Flow Technical Overview of Getting Started with Apple Pay
             // In App Provisioning Verification and Security v4.pdf_, "issuer app checks existing passes with passes()
             // and remoteSecureElementPasses or canAddSecureElementPass(primaryAccountIdentifier:)."
@@ -245,7 +245,7 @@ class ViewController: UIViewController, PKAddPaymentPassViewControllerDelegate, 
     }
 
     private func createCardPages(_ cards: [Card]) -> [CardPage] {
-        return cards.map { card in
+        cards.map { card in
             let cardPage = Bundle.main.loadNibNamed("CardPage", owner: self, options: nil)?.first as! CardPage
             cardPage.translatesAutoresizingMaskIntoConstraints = false
             cardPage.card = card
