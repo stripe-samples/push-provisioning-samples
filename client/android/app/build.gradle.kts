@@ -37,7 +37,7 @@ val packageName = "com.stripe.android.pushprovisioning"
 
 android {
     namespace = packageName
-    compileSdk = 33
+    compileSdk = 34
 
     signingConfigs {
         getByName("debug") {
@@ -50,7 +50,7 @@ android {
 
     defaultConfig {
         applicationId = packageName
-        minSdk = 21
+        minSdk = 23
         //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
