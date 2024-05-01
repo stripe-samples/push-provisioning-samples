@@ -1,4 +1,4 @@
-Example App Backend
+Sample Backend
 ====
 
 This is a [Sinatra](http://www.sinatrarb.com/) webapp that you can use to test Stripe's example push provisioning apps.
@@ -21,7 +21,7 @@ Follow the steps below to run locally.
 0. Prerequisites
 
 You will need a Stripe account in order to run the sample backend. Once you set up your account
-and completed the [steps to get Issuing access](https://stripe.com/docs/issuing/cards/digital-wallets#request-access),
+and completed the [steps to get access to use digital wallets with Issuing](https://stripe.com/docs/issuing/cards/digital-wallets#request-access),
 go to the Stripe developer dashboard to find your [API keys](https://dashboard.stripe.com/apikeys) and [cardholder ID](https://dashboard.stripe.com/issuing/cardholders).
 
 To configure the app, copy the `.env.example` file into a file named `.env`:
