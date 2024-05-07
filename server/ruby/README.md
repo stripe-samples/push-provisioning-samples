@@ -58,5 +58,5 @@ bundle exec ruby server.rb
 Basic smoke test
 ---
 ```
-curl -u cardholder:password --basic http://localhost:4242/cards
+curl -u cardholder:secret --basic http://localhost:4242/cards
 ```
