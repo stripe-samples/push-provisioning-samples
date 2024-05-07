@@ -43,8 +43,8 @@ PASSWORD=...
 
 1. Install dependencies
 ```
-RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC # flag to build ruby 2.5.8 on M1 Macs \
-  rbenv install 2.5.8
+# flag to build ruby 2.5.8 on M1 Macs
+RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC rbenv install 2.5.8
 rbenv local 2.5.8
 gem install bundler -v 2.3.26
 bundle install
