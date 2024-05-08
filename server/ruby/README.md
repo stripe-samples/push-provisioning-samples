@@ -16,15 +16,13 @@ Happy testing!
 How to run locally
 ----
 
-Follow the steps below to run locally.
-
-0. Prerequisites
+### 0. Prerequisites
 
 You will need a Stripe account in order to run the sample backend. Once you set up your account
 and completed the [steps to get access to use digital wallets with Issuing](https://stripe.com/docs/issuing/cards/digital-wallets#request-access),
 go to the Stripe developer dashboard to find your [API keys](https://dashboard.stripe.com/apikeys) and [cardholder ID](https://dashboard.stripe.com/issuing/cardholders).
 
-To configure the app, copy the `.env.example` file into a file named `.env`:
+From the `server/ruby` directory, copy the hidden `.env.example` file into a file named `.env` to configure the sample backend:
 
 ```
 cp .env.example .env
@@ -41,7 +39,7 @@ USERNAME=...
 PASSWORD=...
 ```
 
-1. Install dependencies
+### 1. Install dependencies
 ```
 # flag to build ruby 2.5.8 on M1 Macs
 RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC rbenv install 2.5.8
@@ -50,7 +48,7 @@ gem install bundler -v 2.3.26
 bundle install
 ```
 
-2. Run the application
+### 2. Run the application
 ```
 bundle exec ruby server.rb
 ```
