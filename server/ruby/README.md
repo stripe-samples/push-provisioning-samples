@@ -5,6 +5,9 @@ This is a [Sinatra](http://www.sinatrarb.com/) webapp that you can use to test S
 
 This is intended for example purposes--it is not a production-ready implementation.
 
+How to deploy
+---
+
 To deploy this for free on Glitch, visit https://glitch.com/edit/#!/stripe-push-provisioning-example-backend and click "Remix".
 
 In your `.env` file in Glitch, set `STRIPE_SECRET_KEY` to your secret key. Find this at https://dashboard.stripe.com/apikeys (it'll look like `sk_live_****`). Then set `CARDHOLDER_ID`, which you can find at https://dashboard.stripe.com/issuing/cardholders (it'll look like `ich_...`).
@@ -43,7 +46,6 @@ PASSWORD=...
 ```
 # flag to build ruby 2.5.8 on M1 Macs
 RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC rbenv install 2.5.8
-rbenv local 2.5.8
 gem install bundler -v 2.3.26
 bundle install
 ```
