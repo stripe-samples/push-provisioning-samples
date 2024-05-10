@@ -18,14 +18,15 @@ class Server: NSObject, URLSessionTaskDelegate {
     /// listens only to `localhost` on the Sinatra port by default.
     var baseUrl = URL(string: "http://127.0.0.1:4242")!
 
-    private var user: String!
-    private var password: String!
+    var user: String!
+    var password: String!
 
     override init() {
         super.init()
 
         let defaults = UserDefaults.standard
         let infoDictionary = Bundle.main.infoDictionary ?? [:]
+
         if let urlString = defaults.string(forKey: "SAMPLE_PP_BACKEND_URL") {
             if let baseUrl = URL(string: urlString) {
                 self.baseUrl = baseUrl
@@ -37,13 +38,25 @@ class Server: NSObject, URLSessionTaskDelegate {
             if let baseUrl = URL(string: urlString) {
                 self.baseUrl = baseUrl
             } else {
-                fatalError("Please check the SAMPLE_PP_BACKEND_URL build setting. `\(urlString)` didn't work")
+                fatalError("Please check the SAMPLE_PP_BACKEND_URL build setting. `\(urlString)` isn't a URL")
             }
         }
 
-        user = infoDictionary["SAMPLE_PP_BACKEND_USERNAME"] as? String
-        password = infoDictionary["SAMPLE_PP_BACKEND_PASSWORD"] as? String
+        if let user = defaults.string(forKey: "SAMPLE_PP_BACKEND_USERNAME") {
+            self.user = user
+        } else {
+            user = infoDictionary["SAMPLE_PP_BACKEND_USERNAME"] as? String
+        }
 
+        if let password = defaults.string(forKey: "SAMPLE_PP_BACKEND_PASSWORD") {
+            self.password = password
+        } else {
+            password = infoDictionary["SAMPLE_PP_BACKEND_PASSWORD"] as? String
+        }
+
+        guard baseUrl != nil else {
+            fatalError("Please check the SAMPLE_PP_BACKEND_URL build setting")
+        }
         guard user != nil else {
             fatalError("Please check the SAMPLE_PP_BACKEND_USERNAME build setting")
         }
@@ -149,6 +162,10 @@ class Server: NSObject, URLSessionTaskDelegate {
             .useCredential : .performDefaultHandling
 
         let credential = URLCredential(user: user, password: password, persistence: .none)
+        let credUser = credential.user ?? "(nil user)"
+        let credPass = credential.password ?? "(nil password)"
+        log.info("received challenge, sending credentials: \(credUser) / \(credPass)")
+
         return (authChallengeDisposition, credential)
     }
 }

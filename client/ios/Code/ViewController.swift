@@ -436,13 +436,15 @@ class ViewController: UIViewController, PKAddPaymentPassViewControllerDelegate, 
 
     func didClickServerURL() {
         let alert = UIAlertController(
-            title: "Server URL",
+            title: "Server config",
             message: nil,
             preferredStyle: UIAlertController.Style.alert
         )
 
         let ok = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             let addressField = alert.textFields![0] as UITextField
+            let userField = alert.textFields![1] as UITextField
+            let passwordField = alert.textFields![2] as UITextField
 
             if let newAddress = addressField.text, newAddress != "" {
                 if let newUrl = URL(string: newAddress) {
@@ -455,11 +457,37 @@ class ViewController: UIViewController, PKAddPaymentPassViewControllerDelegate, 
                     self.log.warning("invalid URL: \(newAddress, privacy: .public)")
                 }
             }
+
+            if let newUser = userField.text, newUser != "" {
+                self.server.user = newUser
+                self.tableView.reloadData()
+
+                let defaults = UserDefaults.standard
+                defaults.set(newUser, forKey: "SAMPLE_PP_BACKEND_USERNAME")
+            }
+
+            if let newPassword = passwordField.text, newPassword != "" {
+                self.server.password = newPassword
+                self.tableView.reloadData()
+
+                let defaults = UserDefaults.standard
+                defaults.set(newPassword, forKey: "SAMPLE_PP_BACKEND_PASSWORD")
+            }
         }
 
         alert.addTextField { (textField) in
-            textField.placeholder = self.server.baseUrl.absoluteString
+            textField.placeholder = "URL"
             textField.text = self.server.baseUrl.absoluteString
+        }
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "username"
+            textField.text = self.server.user
+        }
+
+        alert.addTextField { (textField) in
+            textField.placeholder = "password"
+            textField.text = self.server.password
         }
 
         alert.addAction(ok)
