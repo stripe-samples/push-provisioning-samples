@@ -420,7 +420,7 @@ class ViewController: UIViewController, PKAddPaymentPassViewControllerDelegate, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         if indexPath.row == 0 {
-            cell.textLabel?.text = "URL"
+            cell.textLabel?.text = "Server config"
             cell.detailTextLabel?.text = server.baseUrl.absoluteString
         }
         return cell
