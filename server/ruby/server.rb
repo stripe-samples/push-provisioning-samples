@@ -5,8 +5,7 @@ require 'dotenv'
 require 'json'
 require 'encrypted_cookie'
 
-# Replace if using a different env file or config
-# Copy the .env.example in the root into a .env file in this folder.
+# Copy the .env.example into an .env file in this same directory
 Dotenv.load
 
 # For sample support and debugging, not required for production:
