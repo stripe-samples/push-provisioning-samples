@@ -83,7 +83,7 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
         func changedPasses(forPasses passes: [PKPass]) -> [ChangedPass] {
             passes.compactMap { pass in
                 if let secureElementPass = pass.secureElementPass {
-                    .pass(secureElementPass)
+                    .passNotRemoved(secureElementPass)
                 } else {
                     nil
                 }
@@ -94,7 +94,7 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
             dictionaries.compactMap { (dict: RemovedPassDict) -> ChangedPass? in
                 guard let serialNumber = dict[.serialNumberUserInfoKey] else { return nil }
                 guard let passTypeIdentifier = dict[.passTypeIdentifierUserInfoKey] else { return nil }
-                return .removedPass(ChangedPass.Removed(
+                return .passRemoved(ChangedPass.Removed(
                     serialNumber: serialNumber,
                     passTypeIdentifier: passTypeIdentifier
                 ))
@@ -133,14 +133,14 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
             var serialNumber: String
             var passTypeIdentifier: String
         }
-        case removedPass(Removed)
-        case pass(PKSecureElementPass)
+        case passRemoved(Removed)
+        case passNotRemoved(PKSecureElementPass)
 
         var serialNumber: String {
             switch self {
-            case .removedPass(let removed):
+            case .passRemoved(let removed):
                 removed.serialNumber
-            case .pass(let pass):
+            case .passNotRemoved(let pass):
                 pass.serialNumber
             }
         }

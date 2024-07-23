@@ -63,7 +63,7 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate {
             // Maybe hide add pass button since we just added this card.
             // Don't hide if it can still be added to another device such as an Apple Watch.
             // Also update corresponding card page.
-            passesDidChange([ChangedPass.pass(pass)])
+            passesDidChange([ChangedPass.passNotRemoved(pass)])
         } else {
             fatalError("expected either pass or error to be non-nil")
         }
