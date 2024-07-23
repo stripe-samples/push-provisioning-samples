@@ -24,7 +24,7 @@ set :bind, '0.0.0.0'
 $stdout.sync = true # Get puts to show up in heroku logs
 
 use Rack::Session::EncryptedCookie,
-    secret: 'replace_me_with_a_real_secret_key' # Actually use something secret here!
+    secret: SecureRandom.bytes(16) # Actually use something secret here!
 
 get '/' do
   status 200
