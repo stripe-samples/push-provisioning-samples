@@ -43,12 +43,24 @@ PASSWORD=secret
 ```
 
 ### 1. Install dependencies
-First [install rbenv](https://github.com/rbenv/rbenv?tab=readme-ov-file#installation) if `rbenv -v` errors.
-Then, from the `server/ruby` directory:
+First [install rbenv](https://github.com/rbenv/rbenv?tab=readme-ov-file#installation) if you don't have it.
+You can check with `rbenv -v`.
+
+Then use `rbenv` to install a modern version of ruby without changing your system ruby:
 ```
 rbenv install 3.3.4
+```
+
+Then, from the `server/ruby` directory:
+```
 gem install bundler
-# ^^ if this errors because of an old ruby version, try appending the -v flag specified in the error message
+```
+if this errors because of an old ruby version, try appending the -v flag specified in the error message:
+```
+gem install bundler -v 2.4.22
+```
+and finally install the gem dependencies:
+```
 bundle install
 ```
 
