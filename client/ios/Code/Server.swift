@@ -14,6 +14,8 @@ class Server: NSObject, URLSessionTaskDelegate {
     /// Ensures log messages go to console.
     private var log = Logger()
 
+    private var numAttempts = 0
+
     /// The address to find the ruby server at. As shipped, the server
     /// listens only to `localhost` on the Sinatra port by default.
     var baseUrl = URL(string: "http://127.0.0.1:4242")!
@@ -54,9 +56,6 @@ class Server: NSObject, URLSessionTaskDelegate {
             password = infoDictionary["SAMPLE_PP_BACKEND_PASSWORD"] as? String
         }
 
-        guard baseUrl != nil else {
-            fatalError("Please check the SAMPLE_PP_BACKEND_URL build setting")
-        }
         guard user != nil else {
             fatalError("Please check the SAMPLE_PP_BACKEND_USERNAME build setting")
         }
@@ -79,6 +78,9 @@ class Server: NSObject, URLSessionTaskDelegate {
         httpMethod: String = "GET",
         formPayload: [String: String] = [:]
     ) async throws -> Data {
+        // reset retry counter shared for all request types
+        numAttempts = 0
+
         let url = URL(string: "\(baseUrl)/\(path)")!
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
@@ -157,6 +159,12 @@ class Server: NSObject, URLSessionTaskDelegate {
         URLSession.AuthChallengeDisposition,
         URLCredential?
     ) {
+        // TODO: better retry mechanism and user error reporting
+        numAttempts += 1
+        if numAttempts > 3 {
+            return (.performDefaultHandling, nil)
+        }
+
         let authChallengeDisposition: URLSession.AuthChallengeDisposition =
         challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic ?
             .useCredential : .performDefaultHandling
