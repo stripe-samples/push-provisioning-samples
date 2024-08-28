@@ -55,7 +55,7 @@ Then, from the `server/ruby` directory:
 ```
 gem install bundler
 ```
-if this errors because of an old ruby version, try appending the -v flag specified in the error message, for example:
+if this errors because of an old ruby version, try appending the `-v` flag specified in the error message, for example:
 ```
 gem install bundler -v 2.4.22
 ```
@@ -69,8 +69,7 @@ bundle install
 bundle exec ruby server.rb
 ```
 
-Basic smoke test
----
+### 3. Basic smoke test
 ```
 curl -u cardholder:secret --basic http://localhost:4242/cards
 ```
