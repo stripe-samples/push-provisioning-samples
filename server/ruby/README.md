@@ -43,10 +43,12 @@ PASSWORD=secret
 ```
 
 ### 1. Install dependencies
+First [install rbenv](https://github.com/rbenv/rbenv?tab=readme-ov-file#installation) if `rbenv -v` errors.
+Then, from the `server/ruby` directory:
 ```
-# flag to build ruby 2.5.8 on M1 Macs
-RUBY_CFLAGS=-DUSE_FFI_CLOSURE_ALLOC rbenv install 2.5.8
-gem install bundler -v 2.3.26
+rbenv install 3.3.4
+gem install bundler
+# ^^ if this errors because of an old ruby version, try appending the -v flag specified in the error message
 bundle install
 ```
 
