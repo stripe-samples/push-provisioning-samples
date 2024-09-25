@@ -8,11 +8,11 @@ This is intended for example purposes--it is not a production-ready implementati
 How to deploy
 ---
 
-To deploy this for free on Glitch, visit https://glitch.com/edit/#!/stripe-push-provisioning-example-backend and click "Remix".
+In your `.env` file or other host-specific environment configuration, set `STRIPE_SECRET_KEY` to your secret key.
+Find this at https://dashboard.stripe.com/apikeys (it'll look like `sk_live_****`).
+Then set `CARDHOLDER_ID`, which you can find at https://dashboard.stripe.com/issuing/cardholders (it'll look like `ich_...`).
 
-In your `.env` file in Glitch, set `STRIPE_SECRET_KEY` to your secret key. Find this at https://dashboard.stripe.com/apikeys (it'll look like `sk_live_****`). Then set `CARDHOLDER_ID`, which you can find at https://dashboard.stripe.com/issuing/cardholders (it'll look like `ich_...`).
-
-Then, set `SAMPLE_PP_BACKEND_URL` in the example iOS/Android app to your Glitch Remix URL (it'll be in the format https://my-example-app.glitch.me).
+Then, set `SAMPLE_PP_BACKEND_URL` in the example iOS/Android app to your backend URL (it'll be in the format https://push-provisioning-samples.onrender.com).
 
 Happy testing!
 

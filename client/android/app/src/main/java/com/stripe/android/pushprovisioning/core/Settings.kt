@@ -39,7 +39,7 @@ class Settings(context: Context) {
          * Note: only necessary if not configured via `gradle.properties`.
          *
          * Set to the base URL of your test backend. The URL will be something like
-         * `https://stripe-push-provisioning-example-backend.glitch.me`.
+         * `https://push-provisioning-samples.onrender.com`.
          */
         private const val BASE_URL = "put your base url here"
 
