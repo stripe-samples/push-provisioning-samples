@@ -110,7 +110,7 @@ helpers do
   end
 
   def log_info(message)
-    puts "\n#{message}\n\n"
+    logger.info "\n#{message}\n\n"
     message
   end
 end

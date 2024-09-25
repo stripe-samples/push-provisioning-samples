@@ -9,7 +9,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // /$()/ is to prevent // from being parsed as a comment
-// e.g. https:/$()/stripe-mobile-example-backend.glitch.me
+// e.g. https:/$()/push-provisioning-samples.onrender.com
 SAMPLE_PP_BACKEND_URL = http:/$()/localhost:4242
 
 // should match the username configured on the above backend
