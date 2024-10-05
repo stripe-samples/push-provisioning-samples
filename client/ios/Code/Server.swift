@@ -139,13 +139,13 @@ class Server: NSObject, URLSessionTaskDelegate {
     ///
     /// - Returns: The JSON response, decoded into a Dictionary. This is how
     ///            the API wants it. 
-    func retrieveEphemeralKey(_ apiVersion: String, cardId: String) async throws -> [AnyHashable: Any] {
+    func retrieveEphemeralKey(_ apiVersion: String, cardId: String) async throws -> [String: Copyable & Sendable] {
         let formPayload = [
             "api_version": apiVersion,
             "card_id": cardId,
         ]
         let data = try await requestToEndpoint("ephemeral_keys", httpMethod: "POST", formPayload: formPayload)
-        let obj = try JSONSerialization.jsonObject(with: data, options: []) as! [AnyHashable: Any] // ! for simplicity
+        let obj = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Copyable & Sendable]
         return obj
     }
 
