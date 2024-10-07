@@ -26,7 +26,15 @@ sections can be implemented.
 
 ### Deploy the android app
 
+- This will address `Could not get unknown property 'SIGNING_KEYSTORE'`
 - The app must be signed with a certificate that was [added to an allowlist](https://developers.google.com/pay/issuers/apis/push-provisioning/android/allowlist#allowlisting_internal_builds_of_your_app) by Google.
+- This means the [default debug keystore setup done by Android Studio](https://developer.android.com/studio/publish/app-signing#debug-mode) will *not* work since it's different on everyone's dev machine.
+- Instead, set up the app signing configuration with a shared keystore available to anyone on your team who needs to create debug builds of the app.
+  1. Create a debug signing keystore. You can [use Android Studio to do this the same as for a release keystore](https://developer.android.com/studio/publish/app-signing#generate-key)
+  2. Copy your keystore to the app `app/` directory (e.g. `app/issuing-android-push-provisioning-keystore.jks`)
+  - In `gradle.properties` set `SIGNING_KEYSTORE` to the filename of the keystore (e.g. `issuing-android-push-provisioning-keystore.jks`)
+  3. Also in `gradle.properties` set `SIGNING_KEY_ALIAS` and `SIGNING_PASSWORD` to the same values from the above keystore creation step.
+  4. Securely share this keystore and key info with anyone on your team who needs to create debug builds of the app.
 - Changes to the signing configuration may require a gradle sync and uninstall + reinstall of the app.
 - [Remember](https://stripe.com/docs/issuing/cards/digital-wallets?platform=Android#testapp): All testing must be done in live mode, with live Issuing cards, and on physical devices (not emulators).
 
