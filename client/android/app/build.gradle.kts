@@ -122,7 +122,7 @@ dependencies {
 
     // 18.3.3 also seems to work. Only the latest version is available to new users at
     // https://developers.google.com/pay/issuers/apis/push-provisioning/android/releases
-    implementation("com.google.android.gms:play-services-tapandpay:18.2.0")
+    implementation("com.google.android.gms:play-services-tapandpay:18.3.3")
 
     // https://developers.google.com/android/guides/tasks#kotlin_coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.0")
