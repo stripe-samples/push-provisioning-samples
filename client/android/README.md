@@ -14,7 +14,7 @@ sections can be implemented.
 2. Open the project in Android Studio
 3. Create a card using the Dashboard or API: https://stripe.com/docs/issuing/cards
 4. [Request access](https://stripe.com/docs/issuing/cards/digital-wallets?platform=Android#request-access)
-5. Download Google's [private SDK](https://developers.google.com/pay/issuers/apis/push-provisioning/android/releases)
+5. Download Google's [private SDK](https://developers.google.com/pay/issuers/apis/push-provisioning/android/setup)
 6. Unarchive it to the `./tapandpay_sdk/` directory, (sibling of  `app`), so, you will have a directory structure like `./tapandpay_sdk/com/google/android/gms/...` from the root of the Gradle project.
 7. In the `gradle.properties`, configure the following to match your backend:
    - `SAMPLE_PP_BACKEND_URL`
