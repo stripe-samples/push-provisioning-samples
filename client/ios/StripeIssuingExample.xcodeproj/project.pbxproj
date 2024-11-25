@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		3D6678C52BF4076F00903682 /* ViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */; };
 		3DB86BA52ADDEC0900127434 /* CardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB86BA42ADDEC0900127434 /* CardsResponse.swift */; };
 		3DBD4A4F2B1943A000DD41BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD4A4E2B1943A000DD41BD /* README.md */; };
+		96119E092CF298ED006EFE9B /* WalletExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 96119DFF2CF298ED006EFE9B /* WalletExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9670797729D126370003B7F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797229D126370003B7F4 /* SceneDelegate.swift */; };
 		9670797829D126370003B7F4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797329D126370003B7F4 /* Card.swift */; };
 		9670797929D126370003B7F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797429D126370003B7F4 /* AppDelegate.swift */; };
@@ -21,9 +22,31 @@
 		9670797D29D126450003B7F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9670797C29D126450003B7F4 /* Assets.xcassets */; };
 		9670798229D1264F0003B7F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9670797E29D1264F0003B7F4 /* Main.storyboard */; };
 		9670798329D1264F0003B7F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9670798029D1264F0003B7F4 /* LaunchScreen.storyboard */; };
-		96E74BE0295BDEC1009278D7 /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 96E74BDF295BDEC1009278D7 /* Stripe */; };
-		96E74BE2295BDEC1009278D7 /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 96E74BE1295BDEC1009278D7 /* StripeApplePay */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		96119E072CF298ED006EFE9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96E74BB3295B8232009278D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96119DFE2CF298ED006EFE9B;
+			remoteInfo = WalletExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		96119E0A2CF298ED006EFE9B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				96119E092CF298ED006EFE9B /* WalletExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3D3C523B2B02CF12008AF8EE /* CardPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardPage.swift; path = Code/CardPage.swift; sourceTree = "<group>"; };
@@ -32,8 +55,8 @@
 		3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController+UITableView.swift"; path = "Code/ViewController+UITableView.swift"; sourceTree = "<group>"; };
 		3DB86BA42ADDEC0900127434 /* CardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardsResponse.swift; path = Code/CardsResponse.swift; sourceTree = "<group>"; };
 		3DBD4A4E2B1943A000DD41BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		3DF0A86E2AE496C2008DCBAD /* Server.private.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Server.private.xcconfig; path = SupportingFiles/Server.private.xcconfig; sourceTree = "<group>"; };
 		3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BuildSettings.xcconfig; path = SupportingFiles/BuildSettings.xcconfig; sourceTree = "<group>"; };
+		96119DFF2CF298ED006EFE9B /* WalletExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WalletExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9670797229D126370003B7F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Code/SceneDelegate.swift; sourceTree = "<group>"; };
 		9670797329D126370003B7F4 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Code/Card.swift; sourceTree = "<group>"; };
 		9670797429D126370003B7F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Code/AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,13 +70,32 @@
 		96E74BBB295B8232009278D7 /* StripeIssuingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StripeIssuingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		96119E0D2CF298ED006EFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 96119DFE2CF298ED006EFE9B /* WalletExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		96119E002CF298ED006EFE9B /* WalletExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (96119E0D2CF298ED006EFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WalletExtension; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		96119DFC2CF298ED006EFE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E74BB8295B8232009278D7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96E74BE0295BDEC1009278D7 /* Stripe in Frameworks */,
-				96E74BE2295BDEC1009278D7 /* StripeApplePay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,13 +105,13 @@
 		9627B52829D125890063060E /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				3DB86BA42ADDEC0900127434 /* CardsResponse.swift */,
 				9670797429D126370003B7F4 /* AppDelegate.swift */,
 				9670797329D126370003B7F4 /* Card.swift */,
+				3D3C523B2B02CF12008AF8EE /* CardPage.swift */,
+				3DB86BA42ADDEC0900127434 /* CardsResponse.swift */,
 				9670797229D126370003B7F4 /* SceneDelegate.swift */,
 				9670797529D126370003B7F4 /* Server.swift */,
 				9670797629D126370003B7F4 /* ViewController.swift */,
-				3D3C523B2B02CF12008AF8EE /* CardPage.swift */,
 				3D6678C22BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift */,
 				3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */,
 			);
@@ -93,7 +135,6 @@
 				3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */,
 				9670798429D1266D0003B7F4 /* Info.plist */,
 				9670798529D1266D0003B7F4 /* StripeIssuingExample.entitlements */,
-				3DF0A86E2AE496C2008DCBAD /* Server.private.xcconfig */,
 			);
 			name = SupportingFiles;
 			sourceTree = "<group>";
@@ -105,6 +146,7 @@
 				9627B52829D125890063060E /* Code */,
 				9627B52929D1258F0063060E /* Resources */,
 				9627B52A29D125940063060E /* SupportingFiles */,
+				96119E002CF298ED006EFE9B /* WalletExtension */,
 				96E74BBC295B8232009278D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				96E74BBB295B8232009278D7 /* StripeIssuingExample.app */,
+				96119DFF2CF298ED006EFE9B /* WalletExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,6 +163,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		96119DFE2CF298ED006EFE9B /* WalletExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96119E0E2CF298ED006EFE9B /* Build configuration list for PBXNativeTarget "WalletExtension" */;
+			buildPhases = (
+				96119DFB2CF298ED006EFE9B /* Sources */,
+				96119DFC2CF298ED006EFE9B /* Frameworks */,
+				96119DFD2CF298ED006EFE9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				96119E002CF298ED006EFE9B /* WalletExtension */,
+			);
+			name = WalletExtension;
+			packageProductDependencies = (
+			);
+			productName = WalletExtension;
+			productReference = 96119DFF2CF298ED006EFE9B /* WalletExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		96E74BBA295B8232009278D7 /* StripeIssuingExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96E74BCF295B8234009278D7 /* Build configuration list for PBXNativeTarget "StripeIssuingExample" */;
@@ -127,15 +192,15 @@
 				96E74BB7295B8232009278D7 /* Sources */,
 				96E74BB8295B8232009278D7 /* Frameworks */,
 				96E74BB9295B8232009278D7 /* Resources */,
+				96119E0A2CF298ED006EFE9B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				96119E082CF298ED006EFE9B /* PBXTargetDependency */,
 			);
 			name = StripeIssuingExample;
 			packageProductDependencies = (
-				96E74BDF295BDEC1009278D7 /* Stripe */,
-				96E74BE1295BDEC1009278D7 /* StripeApplePay */,
 			);
 			productName = StripeIssuingExample;
 			productReference = 96E74BBB295B8232009278D7 /* StripeIssuingExample.app */;
@@ -148,9 +213,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					96119DFE2CF298ED006EFE9B = {
+						CreatedOnToolsVersion = 16.1;
+						LastSwiftMigration = 1610;
+					};
 					96E74BBA295B8232009278D7 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -166,18 +235,25 @@
 			);
 			mainGroup = 96E74BB2295B8232009278D7;
 			packageReferences = (
-				96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
 			);
 			productRefGroup = 96E74BBC295B8232009278D7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				96E74BBA295B8232009278D7 /* StripeIssuingExample */,
+				96119DFE2CF298ED006EFE9B /* WalletExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		96119DFD2CF298ED006EFE9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E74BB9295B8232009278D7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,6 +269,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		96119DFB2CF298ED006EFE9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E74BB7295B8232009278D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,6 +293,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96119E082CF298ED006EFE9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96119DFE2CF298ED006EFE9B /* WalletExtension */;
+			targetProxy = 96119E072CF298ED006EFE9B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3D3C523D2B02D212008AF8EE /* CardPage.xib */ = {
@@ -239,6 +330,74 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		96119E0B2CF298ED006EFE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WalletExtension/StripeIssuingExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalletExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WalletExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest.walletextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96119E0C2CF298ED006EFE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WalletExtension/StripeIssuingExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WalletExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WalletExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest.walletextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		96E74BCD295B8234009278D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
@@ -433,6 +592,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		96119E0E2CF298ED006EFE9B /* Build configuration list for PBXNativeTarget "WalletExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96119E0B2CF298ED006EFE9B /* Debug */,
+				96119E0C2CF298ED006EFE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		96E74BB6295B8232009278D7 /* Build configuration list for PBXProject "StripeIssuingExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -452,30 +620,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 23.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		96E74BDF295BDEC1009278D7 /* Stripe */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = Stripe;
-		};
-		96E74BE1295BDEC1009278D7 /* StripeApplePay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96E74BDE295BDEC1009278D7 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
-			productName = StripeApplePay;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96E74BB3295B8232009278D7 /* Project object */;
 }

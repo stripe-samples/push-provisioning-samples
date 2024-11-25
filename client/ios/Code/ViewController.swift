@@ -4,11 +4,11 @@
 
 import OSLog
 import PassKit
-import Stripe
 import UIKit
 
 /// This class illustrates, as simply as possible, how to perform push provisioning in iOS using Stripe Issuing.
-class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate {
+
     // MARK: - Properties
 
     /// The card we'll be provisioning. Initialize it to a default empty `Card` so the UI has something to display.
@@ -274,35 +274,41 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
             // This should never happen: card should be non-nil when Add to Apple Wallet button is visible
             return
         }
-        let config = STPPushProvisioningContext.requestConfiguration(
-            withName: card.cardholderName,
-            description: "StripeIssuingExample Card",
-            last4: card.last4,
-            brand: card.brand.toSTPCardBrand(),
-            primaryAccountIdentifier: card.primaryAccountIdentifier
-        )
+
+        guard let config = PKAddPaymentPassRequestConfiguration(encryptionScheme: .ECC_V2) else {
+            print("no config")
+            return
+        }
+        
+        config.cardholderName = card.cardholderName
+        config.primaryAccountSuffix = card.last4
+        config.localizedDescription = "StripeIssuingExample Card"
+        config.style = .payment
+        config.paymentNetwork = card.brand.toPKPaymentNetwork()
+        config.primaryAccountIdentifier = card.primaryAccountIdentifier
+        
         let controller = PKAddPaymentPassViewController(requestConfiguration: config, delegate: self)
         self.present(controller!, animated: true, completion: nil)
     }
 
-    // MARK: - STPIssuingCardEphemeralKeyProvider
-
-    /// Needed by `STPPushProvisioningContext` to provision a card as described here:
-    /// https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#provision-a-card
-    func createIssuingCardKey(
-        withAPIVersion apiVersion: String,
-        completion: @escaping STPJSONResponseCompletionBlock
-    ) {
-        Task {
-            do {
-                let key = try await server.retrieveEphemeralKey(apiVersion, cardId: card!.id)
-                completion(key, nil)
-            } catch {
-                log.error("createIssuingCardKey received: \(error, privacy: .public)")
-                completion(nil, error)
-            }
-        }
-    }
+//    // MARK: - STPIssuingCardEphemeralKeyProvider
+//
+//    /// Needed by `STPPushProvisioningContext` to provision a card as described here:
+//    /// https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#provision-a-card
+//    func createIssuingCardKey(
+//        withAPIVersion apiVersion: String,
+//        completion: @escaping STPJSONResponseCompletionBlock
+//    ) {
+//        Task {
+//            do {
+//                let key = try await server.retrieveEphemeralKey(apiVersion, cardId: card!.id)
+//                completion(key, nil)
+//            } catch {
+//                log.error("createIssuingCardKey received: \(error, privacy: .public)")
+//                completion(nil, error)
+//            }
+//        }
+//    }
 
     // MARK: - UIScrollViewDelegate
 
@@ -321,6 +327,28 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
             pageControl.currentPage = pageIndex
         }
     }
+    
+    /// Creates a CharacterSet from RFC 3986 allowed characters.
+    ///
+    /// RFC 3986 states that the following characters are "reserved" characters.
+    ///
+    /// - General Delimiters: ":", "#", "[", "]", "@", "?", "/"
+    /// - Sub-Delimiters: "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "="
+    ///
+    /// In RFC 3986 - Section 3.4, it states that the "?" and "/" characters should not be escaped to allow
+    /// query strings to include a URL. Therefore, all "reserved" characters with the exception of "?" and "/"
+    /// should be percent-escaped in the query string.
+    let URLQueryAllowed: CharacterSet = {
+        // does not include "?" or "/" due to RFC 3986 - Section 3.4.
+        let generalDelimitersToEncode = ":#[]@"
+        let subDelimitersToEncode = "!$&'()*+,;="
+        let encodableDelimiters = CharacterSet(
+            charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)"
+        )
+        
+        return CharacterSet.urlQueryAllowed.subtracting(encodableDelimiters)
+    }()
+
 }
 
 private let requestAccessLink = "https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#request-access"
@@ -332,3 +360,5 @@ private let copyLinkAction = UIAlertAction(
         UIPasteboard.general.string = requestAccessLink
     }
 )
+
+

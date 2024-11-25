@@ -3,13 +3,27 @@
 //
 
 import Foundation
-import StripePayments
 import PassKit
 
 /// Card represents a Stripe Issuing card, with just the bare info
 /// we need for this example.
 ///
 struct Card: Codable, Equatable {
+
+    /// Convert the Stripe API representation (string) to PassKit
+    enum Brand: String, Codable {
+        case visa = "Visa"
+        case mastercard = "MasterCard"
+
+        func toPKPaymentNetwork() -> PKPaymentNetwork {
+            switch self {
+            case .visa:
+                .visa
+            case .mastercard:
+                .masterCard
+            }
+        }
+    }
 
     /// The card's id (`ic_xxx`)
     var id: String
@@ -20,9 +34,6 @@ struct Card: Codable, Equatable {
     /// The last 4 digits of the card's PAN, for identification. The last4 are not in PCI scope.
     var last4: String
 
-    /// "Visa" or "MasterCard"
-    var brand: Brand
-
     /// The cardholder's name; same as `cardholder.name`
     var cardholderName: String
 
@@ -30,19 +41,8 @@ struct Card: Codable, Equatable {
     /// *this* wallet before. Same as `wallets.primary_account_identifier`.
     var primaryAccountIdentifier: String?
 
-    enum Brand: String, Codable {
-        case visa = "Visa"
-        case mastercard = "MasterCard"
-
-        func toSTPCardBrand() -> STPCardBrand {
-            switch self {
-            case .visa:
-                STPCardBrand.visa
-            case .mastercard:
-                STPCardBrand.mastercard
-            }
-        }
-    }
+    /// "Visa" or "MasterCard"
+    var brand: Brand
 
     /// For simplicity, we use canAddToWallet() (which checks local and remote wallets) to determine whether to show
     /// the "Add to Apple Wallet" button, but this method tells us *which* wallet(s) contain a card with the specified

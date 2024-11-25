@@ -71,7 +71,7 @@ class CardPage: UIView, UITableViewDataSource {
             cell.detailTextLabel?.text = "local: \(String(inWallet.local)), remote: \(String(inWallet.remote))"
         } else if indexPath.row == 5 {
             cell.textLabel?.text = "Brand"
-            cell.detailTextLabel?.text = card?.brand.rawValue
+            cell.detailTextLabel?.text = "LlamaCard"
         }
 
         return cell
