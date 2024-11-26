@@ -1,13 +1,12 @@
 //
-//  ViewController+UITableViewDataSource.swift
 //  StripeIssuingExample
-//
-//  Created by Vlad Chernis on 5/14/24.
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import Foundation
 import UIKit
 
+/// As a convenience, the sample app allows the user to change the server URL.
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - UITableViewDataSource

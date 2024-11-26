@@ -1,15 +1,17 @@
 //
-//  CardPage.swift
 //  StripeIssuingExample
-//
-//  Created by Vlad Chernis on 11/2/23.
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import UIKit
 import PassKit
 
+/// Implements the "page" for a card in the sample app UI. (Users can scroll from 'page' to 'page' if there are multiple cards.)
 class CardPage: UIView, UITableViewDataSource {
 
+    // MARK: - Properties
+    
+    /// The card this page shows
     var card: Card!
 
     // Returns nil when the serial number isn't definitively known. This happens when:
@@ -36,6 +38,8 @@ class CardPage: UIView, UITableViewDataSource {
 
     /// A table view used to display basic info for a single issuing card
     @IBOutlet var tableView: UITableView!
+
+    // MARK: - Functions
 
     override func awakeFromNib() {
         super.awakeFromNib()

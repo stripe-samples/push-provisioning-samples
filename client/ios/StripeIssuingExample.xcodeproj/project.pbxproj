@@ -11,7 +11,6 @@
 		3D3C523F2B02D212008AF8EE /* CardPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3C523D2B02D212008AF8EE /* CardPage.xib */; };
 		3D6678C32BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6678C22BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift */; };
 		3D6678C52BF4076F00903682 /* ViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */; };
-		3DB86BA52ADDEC0900127434 /* CardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB86BA42ADDEC0900127434 /* CardsResponse.swift */; };
 		3DBD4A4F2B1943A000DD41BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD4A4E2B1943A000DD41BD /* README.md */; };
 		96119E092CF298ED006EFE9B /* WalletExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 96119DFF2CF298ED006EFE9B /* WalletExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9670797729D126370003B7F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797229D126370003B7F4 /* SceneDelegate.swift */; };
@@ -53,7 +52,6 @@
 		3D3C523E2B02D212008AF8EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/CardPage.xib; sourceTree = "<group>"; };
 		3D6678C22BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController+PKAddPaymentPassViewControllerDelegate.swift"; path = "Code/ViewController+PKAddPaymentPassViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ViewController+UITableView.swift"; path = "Code/ViewController+UITableView.swift"; sourceTree = "<group>"; };
-		3DB86BA42ADDEC0900127434 /* CardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardsResponse.swift; path = Code/CardsResponse.swift; sourceTree = "<group>"; };
 		3DBD4A4E2B1943A000DD41BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BuildSettings.xcconfig; path = SupportingFiles/BuildSettings.xcconfig; sourceTree = "<group>"; };
 		96119DFF2CF298ED006EFE9B /* WalletExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WalletExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +106,6 @@
 				9670797429D126370003B7F4 /* AppDelegate.swift */,
 				9670797329D126370003B7F4 /* Card.swift */,
 				3D3C523B2B02CF12008AF8EE /* CardPage.swift */,
-				3DB86BA42ADDEC0900127434 /* CardsResponse.swift */,
 				9670797229D126370003B7F4 /* SceneDelegate.swift */,
 				9670797529D126370003B7F4 /* Server.swift */,
 				9670797629D126370003B7F4 /* ViewController.swift */,
@@ -281,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3C523C2B02CF12008AF8EE /* CardPage.swift in Sources */,
-				3DB86BA52ADDEC0900127434 /* CardsResponse.swift in Sources */,
 				9670797B29D126370003B7F4 /* ViewController.swift in Sources */,
 				3D6678C32BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift in Sources */,
 				9670797929D126370003B7F4 /* AppDelegate.swift in Sources */,

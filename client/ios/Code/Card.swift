@@ -1,5 +1,6 @@
 //
 //  StripeIssuingExample
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import Foundation
@@ -10,6 +11,8 @@ import PassKit
 ///
 struct Card: Codable, Equatable {
 
+    // MARK: - Types
+    
     /// Convert the Stripe API representation (string) to PassKit
     enum Brand: String, Codable {
         case visa = "Visa"
@@ -24,25 +27,48 @@ struct Card: Codable, Equatable {
             }
         }
     }
+    
+    /// Identifies which wallets a card is in. Important for the UI to present
+    /// the correct options.
+    struct InWallet {
+        var local: Bool
+        var remote: Bool
+    }
 
-    /// The card's id (`ic_xxx`)
-    var id: String
+    // MARK: - Properties
+
+    /// "Visa" or "MasterCard"
+    var brand: Brand
+
+    /// The cardholder's name; same as `cardholder.name`
+    var cardholderName: String
 
     /// True if enabled and approved by Apple; same as `status == 'active'` && `wallets.apple_pay.eligible`
     var eligibleForApplePay: Bool
 
+    /// The card's id (`ic_xxx`)
+    var id: String
+
     /// The last 4 digits of the card's PAN, for identification. The last4 are not in PCI scope.
     var last4: String
-
-    /// The cardholder's name; same as `cardholder.name`
-    var cardholderName: String
 
     /// An identifier that can be used to determine if the card has been added to
     /// *this* wallet before. Same as `wallets.primary_account_identifier`.
     var primaryAccountIdentifier: String?
 
-    /// "Visa" or "MasterCard"
-    var brand: Brand
+    // MARK: - Functions
+    
+    /// Which wallets is the card in?
+    func isInWallet() -> InWallet {
+        Card.isInWallet(primaryAccountIdentifier: primaryAccountIdentifier ?? "")
+    }
+
+    /// Can the card be added to (this device's) wallet?
+    func canAddToWallet() -> Bool {
+        Card.canAddToWallet(primaryAccountIdentifier: primaryAccountIdentifier ?? "")
+    }
+
+    // MARK: - Statics
 
     /// For simplicity, we use canAddToWallet() (which checks local and remote wallets) to determine whether to show
     /// the "Add to Apple Wallet" button, but this method tells us *which* wallet(s) contain a card with the specified
@@ -71,20 +97,5 @@ struct Card: Codable, Equatable {
     ///     and remote wallets (see isInWallet).
     static func canAddToWallet(primaryAccountIdentifier pai: String) -> Bool {
         return PKPassLibrary().canAddSecureElementPass(primaryAccountIdentifier: pai)
-    }
-}
-
-struct InWallet {
-    var local: Bool
-    var remote: Bool
-}
-
-extension Card {
-    func isInWallet() -> InWallet {
-        Card.isInWallet(primaryAccountIdentifier: primaryAccountIdentifier ?? "")
-    }
-
-    func canAddToWallet() -> Bool {
-        Card.canAddToWallet(primaryAccountIdentifier: primaryAccountIdentifier ?? "")
     }
 }

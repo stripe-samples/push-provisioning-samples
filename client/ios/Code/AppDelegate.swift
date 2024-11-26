@@ -1,12 +1,11 @@
 //
 //  StripeIssuingExample
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    // TODO: Requirement (4.7): Card Issuer Wallet Extensions
 }
 

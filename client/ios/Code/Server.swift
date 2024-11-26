@@ -1,5 +1,6 @@
 //
 //  StripeIssuingExample
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import OSLog
@@ -7,21 +8,43 @@ import OSLog
 /// Server is an interface to the included ruby server endpoints.
 /// It is simplified for example purposes.
 class Server: NSObject, URLSessionTaskDelegate {
+
+    // MARK: - Types
+
+    /// For returning Card info.
+    struct CardsResponse: Codable {
+        var data: [Card]
+    }
+
+    /// Just a simple thing to throw when needed.
+    enum ServerError: Error {
+        case genericError(_ message: String)
+    }
     
+
     // MARK: - Properties
-    
-    /// Ensures log messages go to console.
-    private var log = Logger()
-    
-    private var numAttempts = 0
     
     /// The address to find the ruby server at. As shipped, the server
     /// listens only to `localhost` on the Sinatra port by default.
     var baseUrl = URL(string: "http://127.0.0.1:4242")!
     
+    /// Used for basic auth to login to the ruby server
     var user: String!
+
+    /// Used for basic auth to login to the ruby server
     var password: String!
+
+    // MARK: - Private properties
     
+    /// Ensures log messages go to console.
+    private var log = Logger()
+    
+    /// Allow limited retries for basic auth
+    private var numAttempts = 0
+    
+    // MARK: - Init
+    
+    /// Load values from config.
     override init() {
         super.init()
         
@@ -63,55 +86,7 @@ class Server: NSObject, URLSessionTaskDelegate {
         }
     }
     
-    // MARK: - Error
-    
-    /// Just a simple thing to throw when needed.
-    enum ServerError: Error {
-        case genericError(_ message: String)
-    }
-    
-    // MARK: - Retrieval Functions
-    
-    private func requestToEndpoint(
-        _ path: String,
-        httpMethod: String = "GET",
-        formPayload: [String: String] = [:]
-    ) async throws -> Data {
-        // reset retry counter shared for all request types
-        numAttempts = 0
-        
-        let url = URL(string: "\(baseUrl)/\(path)")!
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod
-        if !formPayload.isEmpty {
-            guard let formUrlEncodedPayload = urlEncode(formPayload: formPayload) else {
-                log.error("failed to form url encode \(httpMethod) payload: \(formPayload) for /\(path)")
-                throw ServerError.genericError(
-                    "failed to form url encode \(httpMethod) payload: \(formPayload) for /\(path)")
-            }
-            request.httpBody = formUrlEncodedPayload
-        }
-        
-        let session = URLSession.shared
-        
-        let (data, genericReponse) = try await session.data(for: request, delegate: self)  // delegate for auth
-        let response = genericReponse as! HTTPURLResponse // ! for simplicity
-        
-        if response.statusCode != 200 {
-            log.error("status code: \(response.statusCode) for /\(path)")
-            throw ServerError.genericError("status code: \(response.statusCode) for /\(path)")
-        }
-        
-        return data
-    }
-    
-    private func urlEncode(formPayload: [String: String]) -> Data? {
-        var components = URLComponents()
-        components.queryItems = formPayload.map { (name, value) -> URLQueryItem in
-            URLQueryItem(name: name, value: value)
-        }
-        return components.percentEncodedQuery?.data(using: .utf8)
-    }
+    // MARK: - API
     
     /// Retrieves the cards from server and filters for eligibility. We can imagine this function retrieves the
     /// appropriately provisioned card for the authenticated user.
@@ -148,16 +123,65 @@ class Server: NSObject, URLSessionTaskDelegate {
         return obj
     }
     
+    // MARK: - Helpers
+    
+    /// Makes a simple HTTP request following the pattern our limited API uses.
+    ///
+    /// - Parameter path: The "path", i.e., "cards", that our server responds to.
+    /// - Parameter httpMethod: "GET" or "POST"
+    /// - Parameter formPayload: The form data for the request.
+    ///
+    /// - Returns Data, which the caller should decode further.
+    ///
+    private func requestToEndpoint(_ path: String, httpMethod: String = "GET", formPayload: [String: String] = [:]) async throws -> Data {
+        
+        // reset retry counter shared for all request types
+        numAttempts = 0
+        
+        let url = URL(string: "\(baseUrl)/\(path)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        if !formPayload.isEmpty {
+            guard let formUrlEncodedPayload = urlEncode(formPayload: formPayload) else {
+                log.error("failed to form url encode \(httpMethod) payload: \(formPayload) for /\(path)")
+                throw ServerError.genericError(
+                    "failed to form url encode \(httpMethod) payload: \(formPayload) for /\(path)")
+            }
+            request.httpBody = formUrlEncodedPayload
+        }
+        
+        let session = URLSession.shared
+        
+        let (data, genericReponse) = try await session.data(for: request, delegate: self)  // delegate for auth
+        let response = genericReponse as! HTTPURLResponse // ! for simplicity
+        
+        if response.statusCode != 200 {
+            log.error("status code: \(response.statusCode) for /\(path)")
+            throw ServerError.genericError("status code: \(response.statusCode) for /\(path)")
+        }
+        
+        return data
+    }
+    
+    /// Basic implementation of an encoder to escape form data properly..
+    ///
+    /// - Parameter formPayload: The form data to encode.
+    ///
+    /// - Returns Data, which the caller should decode further, or nil if error.
+    ///
+    private func urlEncode(formPayload: [String: String]) -> Data? {
+        var components = URLComponents()
+        components.queryItems = formPayload.map { (name, value) -> URLQueryItem in
+            URLQueryItem(name: name, value: value)
+        }
+        return components.percentEncodedQuery?.data(using: .utf8)
+    }
+    
     // MARK: - URLSessionTaskDelegate
     
-    func urlSession(
-        _ session: URLSession,
-        task: URLSessionTask,
-        didReceive challenge: URLAuthenticationChallenge
-    ) async -> (
-        URLSession.AuthChallengeDisposition,
-        URLCredential?
-    ) {
+    /// Simple implementation of HTTP Basic auth
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+      
         // TODO: better retry mechanism and user error reporting
         numAttempts += 1
         if numAttempts > 3 {
