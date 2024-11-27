@@ -1,8 +1,6 @@
 //
-//  ViewController+PKAddPaymentPassViewControllerDelegate.swift
 //  StripeIssuingExample
-//
-//  Created by Vlad Chernis on 5/14/24.
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import Foundation
@@ -29,20 +27,8 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate, URLSessionTas
         }
         
         Task {
-            do {
-                let keyDict = try await server.retrieveEphemeralKey("2024-11-20.acacia", cardId: card.id)
-                
-                guard let key = keyDict["secret"] as? String else {
-                    print("can't get key")
-                    return
-                }
-
-                var base64Certificates: [String] = []
-                for certificate in certificates {
-                    base64Certificates.append(certificate.base64EncodedString(options: []))
-                }
-
-                let details = try await retrievePushProvisioningDetails(key: key, cardId: card.id, certificates: certificates, nonce: nonce, nonceSignature: nonceSignature)
+                let ppd = PushProvisioningDetails()
+                let details = await ppd.retrieveDetails(cardId: card.id, certificates: certificates, nonce: nonce, nonceSignature: nonceSignature)
                 
                 guard let activationData = details["activation_data"] as? String else {
                     print("error: no activation data")
@@ -64,9 +50,6 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate, URLSessionTas
                 request.encryptedPassData = encryptedPassData.data(using: .utf8)
                 request.ephemeralPublicKey = ephemeralPublicKey.data(using: .utf8)
                 handler(request)
-
-            }
-            
         }
     }
 
@@ -133,124 +116,6 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate, URLSessionTas
         )
     }
     
-    func retrievePushProvisioningDetails(key: String,
-                                         cardId: String,
-                                         certificates: [Data],
-                                         nonce: Data,
-                                         nonceSignature: Data) async throws -> [String: Any] {
-        
-        var base64Certificates: [String] = []
-        for certificate in certificates {
-            base64Certificates.append(certificate.base64EncodedString(options: []))
-        }
-        
-        let parameters = [
-            "ios": [
-                "certificates": base64Certificates,
-                "nonce": hexadecimalString(for: nonce),
-                "nonce_signature": hexadecimalString(for: nonceSignature),
-            ]
-        ]
-        
-        let url = URL(string: "https://api.stripe.com/v1/issuing/cards/\(cardId)/push_provisioning_details")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("Bearer " + key, forHTTPHeaderField: "Authorization")
-        request.setValue("true", forHTTPHeaderField:  "Stripe-Livemode")
-        request.setValue("2020-08-27", forHTTPHeaderField:  "Stripe-Version")
-
-        guard let url = request.url else {
-            print("can't happen: no URL")
-            return [:]
-        }
-        let urlString = url.absoluteString
-        let query = query(parameters)
-        request.url = URL(string: urlString + (url.query != nil ? "&\(query)" : "?\(query)"))
-        
-        let session = URLSession.shared
-        
-        let (data, genericReponse) = try await session.data(for: request, delegate: self)  // delegate for auth
-        let response = genericReponse as! HTTPURLResponse // ! for simplicity
-        
-        if response.statusCode != 200 {
-            print("status code: \(response.statusCode)")
-        }
-        
-        let obj = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-        return obj
-    }
-    
-    private func query(_ parameters: [String: Any]) -> String {
-        var components: [(String, String)] = []
-        
-        for key in parameters.keys.sorted(by: <) {
-            let value = parameters[key]!
-            components += queryComponents(fromKey: escape(key), value: value)
-        }
-        return components.map { "\($0)=\($1)" }.joined(separator: "&")
-    }
-    
-    /// Creates a percent-escaped, URL encoded query string components from the given key-value pair recursively.
-    ///
-    /// - Parameters:
-    ///   - key:   Key of the query component.
-    ///   - value: Value of the query component.
-    ///
-    /// - Returns: The percent-escaped, URL encoded query string components.
-    private func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
-        func unwrap<T>(_ any: T) -> Any {
-            let mirror = Mirror(reflecting: any)
-            guard mirror.displayStyle == .optional, let first = mirror.children.first else {
-                return any
-            }
-            return first.value
-        }
-        
-        var components: [(String, String)] = []
-        switch value {
-        case let dictionary as [String: Any]:
-            for nestedKey in dictionary.keys.sorted() {
-                let value = dictionary[nestedKey]!
-                let escapedNestedKey = escape(nestedKey)
-                components += queryComponents(fromKey: "\(key)[\(escapedNestedKey)]", value: value)
-            }
-        case let array as [Any]:
-            for (index, value) in array.enumerated() {
-                components += queryComponents(fromKey: "\(key)[\(index)]", value: value)
-            }
-        case let number as NSNumber:
-            if number.isBool {
-                components.append((key, escape(number.boolValue ? "true" : "false")))
-            } else {
-                components.append((key, escape("\(number)")))
-            }
-        case let bool as Bool:
-            components.append((key, escape(bool ? "true" : "false")))
-        case let set as Set<AnyHashable>:
-            for value in Array(set) {
-                components += queryComponents(fromKey: "\(key)", value: value)
-            }
-        default:
-            let unwrappedValue = unwrap(value)
-            components.append((key, escape("\(unwrappedValue)")))
-        }
-        return components
-    }
-    
-    
-    /// Creates a percent-escaped string following RFC 3986 for a query string key or value.
-    ///
-    /// - Parameter string: `String` to be percent-escaped.
-    ///
-    /// - Returns:          The percent-escaped `String`.
-    private func escape(_ string: String) -> String {
-        string.addingPercentEncoding(withAllowedCharacters: URLQueryAllowed) ?? string
-    }
-    
-    
-    private func hexadecimalString(for data: Data) -> String {
-        return data.map { String(format: "%02hhx", $0) }.joined()
-    }
 }
 
 

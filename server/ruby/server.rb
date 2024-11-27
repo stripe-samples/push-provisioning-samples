@@ -70,8 +70,6 @@ end
 post '/ephemeral_keys' do
   authenticate!
   begin
-    # TODO: Ideally the ephemeral key supports only certain operations (e.g. a key meant for push provisioning can't
-    #   be used to change the pin).
     key = Stripe::EphemeralKey.create(
       { issuing_card: params['card_id'] },
       { stripe_version: params['api_version'] }

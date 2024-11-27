@@ -8,20 +8,20 @@ import OSLog
 /// Server is an interface to the included ruby server endpoints.
 /// It is simplified for example purposes.
 class Server: NSObject, URLSessionTaskDelegate {
-
+    
     // MARK: - Types
-
+    
     /// For returning Card info.
     struct CardsResponse: Codable {
         var data: [Card]
     }
-
+    
     /// Just a simple thing to throw when needed.
     enum ServerError: Error {
         case genericError(_ message: String)
     }
     
-
+    
     // MARK: - Properties
     
     /// The address to find the ruby server at. As shipped, the server
@@ -30,10 +30,10 @@ class Server: NSObject, URLSessionTaskDelegate {
     
     /// Used for basic auth to login to the ruby server
     var user: String!
-
+    
     /// Used for basic auth to login to the ruby server
     var password: String!
-
+    
     // MARK: - Private properties
     
     /// Ensures log messages go to console.
@@ -94,7 +94,7 @@ class Server: NSObject, URLSessionTaskDelegate {
     /// - Throws: Throws on any error.
     ///
     /// - Returns: A decoded `Card` instance.
-    func getEligibleCards() async throws -> [Card] {
+    func retrieveEligibleCards() async throws -> [Card] {
         let data = try await requestToEndpoint("cards", httpMethod: "GET")
         
         let decoder: JSONDecoder = JSONDecoder()
@@ -181,7 +181,7 @@ class Server: NSObject, URLSessionTaskDelegate {
     
     /// Simple implementation of HTTP Basic auth
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
-      
+        
         // TODO: better retry mechanism and user error reporting
         numAttempts += 1
         if numAttempts > 3 {
@@ -198,14 +198,6 @@ class Server: NSObject, URLSessionTaskDelegate {
         log.info("received challenge, sending credentials: \(credUser) / \(credPass)")
         
         return (authChallengeDisposition, credential)
-    }
-}
-
-extension NSNumber {
-    fileprivate var isBool: Bool {
-        // Use Obj-C type encoding to check whether the underlying type is a `Bool`, as it's guaranteed as part of
-        // swift-corelibs-foundation, per [this discussion on the Swift forums](https://forums.swift.org/t/alamofire-on-linux-possible-but-not-release-ready/34553/22).
-        String(cString: objCType) == "c"
-    }
+    }    
 }
 

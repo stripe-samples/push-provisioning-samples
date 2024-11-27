@@ -1,5 +1,6 @@
 //
 //  StripeIssuingExample
+//  Copyright (c) 2024 Stripe Inc
 //
 
 import OSLog
@@ -94,7 +95,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func retrieveCards(sender: UIButton) {
         Task {
             do {
-                let cards = try await server.getEligibleCards()
+                let cards = try await server.retrieveEligibleCards()
                 guard let chosenCard = cards.first else {
                     addPassButton.isHidden = true
                     alertError(
@@ -210,28 +211,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             pageControl.currentPage = pageIndex
         }
     }
-    
-    /// Creates a CharacterSet from RFC 3986 allowed characters.
-    ///
-    /// RFC 3986 states that the following characters are "reserved" characters.
-    ///
-    /// - General Delimiters: ":", "#", "[", "]", "@", "?", "/"
-    /// - Sub-Delimiters: "!", "$", "&", "'", "(", ")", "*", "+", ",", ";", "="
-    ///
-    /// In RFC 3986 - Section 3.4, it states that the "?" and "/" characters should not be escaped to allow
-    /// query strings to include a URL. Therefore, all "reserved" characters with the exception of "?" and "/"
-    /// should be percent-escaped in the query string.
-    let URLQueryAllowed: CharacterSet = {
-        // does not include "?" or "/" due to RFC 3986 - Section 3.4.
-        let generalDelimitersToEncode = ":#[]@"
-        let subDelimitersToEncode = "!$&'()*+,;="
-        let encodableDelimiters = CharacterSet(
-            charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)"
-        )
-        
-        return CharacterSet.urlQueryAllowed.subtracting(encodableDelimiters)
-    }()
-    
 }
 
 extension ViewController {
