@@ -13,7 +13,7 @@
 		3D6678C52BF4076F00903682 /* ViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */; };
 		3DBD4A4F2B1943A000DD41BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD4A4E2B1943A000DD41BD /* README.md */; };
 		96119E092CF298ED006EFE9B /* WalletExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 96119DFF2CF298ED006EFE9B /* WalletExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9642CBB72CF69B06006301DD /* PushProvisioningDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642CBB62CF69B06006301DD /* PushProvisioningDetails.swift */; };
+		9642CBB92CF6A1C4006301DD /* PushProvisioningDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642CBB82CF6A1C4006301DD /* PushProvisioningDetails.swift */; };
 		9670797729D126370003B7F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797229D126370003B7F4 /* SceneDelegate.swift */; };
 		9670797829D126370003B7F4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797329D126370003B7F4 /* Card.swift */; };
 		9670797929D126370003B7F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797429D126370003B7F4 /* AppDelegate.swift */; };
@@ -56,7 +56,7 @@
 		3DBD4A4E2B1943A000DD41BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BuildSettings.xcconfig; path = SupportingFiles/BuildSettings.xcconfig; sourceTree = "<group>"; };
 		96119DFF2CF298ED006EFE9B /* WalletExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WalletExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9642CBB62CF69B06006301DD /* PushProvisioningDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushProvisioningDetails.swift; sourceTree = "<group>"; };
+		9642CBB82CF6A1C4006301DD /* PushProvisioningDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushProvisioningDetails.swift; sourceTree = "<group>"; };
 		9670797229D126370003B7F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Code/SceneDelegate.swift; sourceTree = "<group>"; };
 		9670797329D126370003B7F4 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Code/Card.swift; sourceTree = "<group>"; };
 		9670797429D126370003B7F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Code/AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 				9670797429D126370003B7F4 /* AppDelegate.swift */,
 				9670797329D126370003B7F4 /* Card.swift */,
 				3D3C523B2B02CF12008AF8EE /* CardPage.swift */,
-				9642CBB62CF69B06006301DD /* PushProvisioningDetails.swift */,
+				9642CBB82CF6A1C4006301DD /* PushProvisioningDetails.swift */,
 				9670797229D126370003B7F4 /* SceneDelegate.swift */,
 				9670797529D126370003B7F4 /* Server.swift */,
 				9670797629D126370003B7F4 /* ViewController.swift */,
@@ -284,7 +284,7 @@
 				9670797B29D126370003B7F4 /* ViewController.swift in Sources */,
 				3D6678C32BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift in Sources */,
 				9670797929D126370003B7F4 /* AppDelegate.swift in Sources */,
-				9642CBB72CF69B06006301DD /* PushProvisioningDetails.swift in Sources */,
+				9642CBB92CF6A1C4006301DD /* PushProvisioningDetails.swift in Sources */,
 				3D6678C52BF4076F00903682 /* ViewController+UITableView.swift in Sources */,
 				9670797829D126370003B7F4 /* Card.swift in Sources */,
 				9670797A29D126370003B7F4 /* Server.swift in Sources */,
