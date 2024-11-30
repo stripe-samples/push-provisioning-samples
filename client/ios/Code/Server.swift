@@ -42,50 +42,6 @@ class Server: NSObject, URLSessionTaskDelegate {
     /// Allow limited retries for basic auth
     private var numAttempts = 0
     
-    // MARK: - Init
-    
-    /// Load values from config.
-    override init() {
-        super.init()
-        
-        let defaults = UserDefaults.standard
-        let infoDictionary = Bundle.main.infoDictionary ?? [:]
-        
-        if let urlString = defaults.string(forKey: "SAMPLE_PP_BACKEND_URL") {
-            if let baseUrl = URL(string: urlString) {
-                self.baseUrl = baseUrl
-            } else {
-                // erase user default when it's not a valid URL
-                defaults.removeObject(forKey: "SAMPLE_PP_BACKEND_URL")
-            }
-        } else if let urlString = infoDictionary["SAMPLE_PP_BACKEND_URL"] as? String {
-            if let baseUrl = URL(string: urlString) {
-                self.baseUrl = baseUrl
-            } else {
-                fatalError("Please check the SAMPLE_PP_BACKEND_URL build setting. `\(urlString)` isn't a URL")
-            }
-        }
-        
-        if let user = defaults.string(forKey: "SAMPLE_PP_BACKEND_USERNAME") {
-            self.user = user
-        } else {
-            user = infoDictionary["SAMPLE_PP_BACKEND_USERNAME"] as? String
-        }
-        
-        if let password = defaults.string(forKey: "SAMPLE_PP_BACKEND_PASSWORD") {
-            self.password = password
-        } else {
-            password = infoDictionary["SAMPLE_PP_BACKEND_PASSWORD"] as? String
-        }
-        
-        guard user != nil else {
-            fatalError("Please check the SAMPLE_PP_BACKEND_USERNAME build setting")
-        }
-        guard password != nil else {
-            fatalError("Please check the SAMPLE_PP_BACKEND_PASSWORD build setting")
-        }
-    }
-    
     // MARK: - API
     
     /// Retrieves the cards from server and filters for eligibility. We can imagine this function retrieves the

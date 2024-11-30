@@ -7,7 +7,11 @@ import Foundation
 import OSLog
 import PassKit
 
-extension ViewController : PKAddPaymentPassViewControllerDelegate, URLSessionTaskDelegate {
+#if USE_STRIPE_SDK
+import Stripe
+#endif
+
+extension ViewController : PKAddPaymentPassViewControllerDelegate {
 
     /// These will be called by `PKAddPaymentPassViewController` to provision a card as described here:
     /// https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#provision-a-card
@@ -20,37 +24,34 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate, URLSessionTas
             PKAddPaymentPassRequest
         ) -> Void
     ) {
-        
-        guard let card = card else {
-            print("nil card, can't happen")
-            return
-        }
-        
+        log.info("STPPushProvisioningContext")
+
+#if USE_STRIPE_SDK
+        STPPushProvisioningContext(keyProvider: self)
+            .addPaymentPassViewController(
+                controller,
+                generateRequestWithCertificateChain: certificates,
+                nonce: nonce,
+                nonceSignature: nonceSignature,
+                completionHandler: handler
+            )
+#else
         Task {
-                let ppd = PushProvisioningDetails()
-                let details = await ppd.retrieveDetails(cardId: card.id, certificates: certificates, nonce: nonce, nonceSignature: nonceSignature)
-                
-                guard let activationData = details["activation_data"] as? String else {
-                    print("error: no activation data")
-                    return
-                }
-                
-                guard let encryptedPassData = details["contents"] as? String else {
-                    print("error: no encryptedPassData")
-                    return
-                }
-                
-                guard let ephemeralPublicKey = details["ephemeral_public_key"] as? String else {
-                    print("error: no ephemeralPublicKey")
-                    return
-                }
-                
-                let request = PKAddPaymentPassRequest()
-                request.activationData = activationData.data(using: .utf8)
-                request.encryptedPassData = encryptedPassData.data(using: .utf8)
-                request.ephemeralPublicKey = ephemeralPublicKey.data(using: .utf8)
+            guard let card = self.card else {
+                log.error("nil card")
+                return
+            }
+            log.info("walletfoo about to retrieving details")
+            let ppd = PushProvisioningDetails(server: server)
+            log.info("walletfoo retrieving details")
+            let request = await ppd.retrieveDetails(cardId: card.id, certificates: certificates, nonce: nonce, nonceSignature: nonceSignature)
+            log.info("walletfoo calling completion handler")
+            if let request = request {
                 handler(request)
+            }
         }
+#endif
+
     }
 
     /// Error parameter will use codes from the PKAddPaymentPassError enumeration, using PKPassKitErrorDomain.
@@ -115,15 +116,4 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate, URLSessionTas
             "addPaymentPassViewController error description: \(error.localizedDescription, privacy: .public)"
         )
     }
-    
 }
-
-
-extension NSNumber {
-fileprivate var isBool: Bool {
-    // Use Obj-C type encoding to check whether the underlying type is a `Bool`, as it's guaranteed as part of
-    // swift-corelibs-foundation, per [this discussion on the Swift forums](https://forums.swift.org/t/alamofire-on-linux-possible-but-not-release-ready/34553/22).
-    String(cString: objCType) == "c"
-}
-}
-

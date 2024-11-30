@@ -6,6 +6,13 @@
 import Foundation
 import PassKit
 
+// This is defined in the app target, but not the extension,
+// to demonstrate both ways of provisioning.
+#if USE_STRIPE_SDK
+import Stripe
+#endif
+
+
 /// Card represents a Stripe Issuing card, with just the bare info
 /// we need for this example.
 ///
@@ -26,6 +33,17 @@ struct Card: Codable, Equatable {
                 .masterCard
             }
         }
+ 
+        #if USE_STRIPE_SDK
+        func toSTPCardBrand() -> STPCardBrand {
+            switch self {
+            case .visa:
+                STPCardBrand.visa
+            case .mastercard:
+                STPCardBrand.mastercard
+            }
+        }
+        #endif
     }
     
     /// Identifies which wallets a card is in. Important for the UI to present

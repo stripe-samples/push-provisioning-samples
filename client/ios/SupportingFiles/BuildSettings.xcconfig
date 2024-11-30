@@ -1,8 +1,6 @@
 //
-//  BuildSettings.xcconfig
 //  StripeIssuingExample
-//
-//  Created by Vlad Chernis on 10/21/23.
+//  Copyright (c) 2024 Stripe Inc
 //
 
 // Configuration settings file format documentation can be found at:
@@ -10,7 +8,7 @@
 
 // /$()/ is to prevent // from being parsed as a comment
 // e.g. https:/$()/push-provisioning-samples.onrender.com
-SAMPLE_PP_BACKEND_URL = http:/$()/localhost:4242
+SAMPLE_PP_BACKEND_URL = http://192.168.68.107:4242
 
 // should match the username configured on the above backend
 SAMPLE_PP_BACKEND_USERNAME = cardholder

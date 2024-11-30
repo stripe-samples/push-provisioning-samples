@@ -3,17 +3,23 @@
 //  Copyright (c) 2024 Stripe Inc
 //
 
-import OSLog
+import OSLog // Use Console to see messages from the TestFlighted app
 import PassKit
 import UIKit
 
+#if USE_STRIPE_SDK
+import Stripe
+#endif
+
 /// This class illustrates, as simply as possible, how to perform push provisioning in iOS using Stripe Issuing.
-class ViewController: UIViewController, UIScrollViewDelegate {
+/// It uses the Stripe SDK and has USE_STRIPE_SDK defined as an Active Compilation Condition.
+/// If you're interested in seeing how it's done without the SDK, look at the Wallet Extension.
+class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UIScrollViewDelegate {
     
     // MARK: - Properties
     
     /// The card we'll be provisioning. Initialize it to a default empty `Card` so the UI has something to display.
-    private var _card: Card? = nil
+    var _card: Card? = nil
     var card: Card? {
         get {
             _card
@@ -61,6 +67,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        loadServerConfig()
         
         NotificationCenter.default.addObserver(
             self,
@@ -125,9 +133,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             // This should never happen: card should be non-nil when Add to Apple Wallet button is visible
             return
         }
-        
+#if USE_STRIPE_SDK
+        let config = STPPushProvisioningContext.requestConfiguration(
+            withName: card.cardholderName,
+            description: "StripeIssuingExample Card",
+            last4: card.last4,
+            brand: card.brand.toSTPCardBrand(),
+            primaryAccountIdentifier: card.primaryAccountIdentifier
+        )
+#else
+     
         guard let config = PKAddPaymentPassRequestConfiguration(encryptionScheme: .ECC_V2) else {
-            print("no config")
+            log.error("no config")
             return
         }
         
@@ -137,11 +154,33 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         config.style = .payment
         config.paymentNetwork = card.brand.toPKPaymentNetwork()
         config.primaryAccountIdentifier = card.primaryAccountIdentifier
+#endif
         
+        log.info("calling PKAddPaymentPassViewController for \(card.last4)")
         let controller = PKAddPaymentPassViewController(requestConfiguration: config, delegate: self)
         self.present(controller!, animated: true, completion: nil)
     }
-    
+
+    // MARK: - STPIssuingCardEphemeralKeyProvider
+
+    /// Needed by `STPPushProvisioningContext` to provision a card as described here:
+    /// https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#provision-a-card
+    func createIssuingCardKey(
+        withAPIVersion apiVersion: String,
+        completion: @escaping STPJSONResponseCompletionBlock
+    ) {
+        Task {
+            do {
+                let key = try await server.retrieveEphemeralKey(apiVersion, cardId: card!.id)
+                log.info("got ephemeral key")
+                completion(key, nil)
+            } catch {
+                log.error("createIssuingCardKey received: \(error, privacy: .public)")
+                completion(nil, error)
+            }
+        }
+    }
+
     // MARK: - Helpers
     
     private func alertError(_ message: String, title: String = "Error", moreActions: UIAlertAction...) {
@@ -155,6 +194,46 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             alert.addAction(action)
         }
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func loadServerConfig() {
+        
+        let defaults = UserDefaults.standard
+        let infoDictionary = Bundle.main.infoDictionary ?? [:]
+        
+        if let urlString = defaults.string(forKey: "SAMPLE_PP_BACKEND_URL") {
+            if let baseUrl = URL(string: urlString) {
+                server.baseUrl = baseUrl
+            } else {
+                // erase user default when it's not a valid URL
+                defaults.removeObject(forKey: "SAMPLE_PP_BACKEND_URL")
+            }
+        } else if let urlString = infoDictionary["SAMPLE_PP_BACKEND_URL"] as? String {
+            if let baseUrl = URL(string: urlString) {
+                server.baseUrl = baseUrl
+            } else {
+                fatalError("Please check the SAMPLE_PP_BACKEND_URL build setting. `\(urlString)` isn't a URL")
+            }
+        }
+        
+        if let user = defaults.string(forKey: "SAMPLE_PP_BACKEND_USERNAME") {
+            server.user = user
+        } else {
+            server.user = infoDictionary["SAMPLE_PP_BACKEND_USERNAME"] as? String
+        }
+        
+        if let password = defaults.string(forKey: "SAMPLE_PP_BACKEND_PASSWORD") {
+            server.password = password
+        } else {
+            server.password = infoDictionary["SAMPLE_PP_BACKEND_PASSWORD"] as? String
+        }
+        
+        guard server.user != nil else {
+            fatalError("Please check the SAMPLE_PP_BACKEND_USERNAME build setting")
+        }
+        guard server.password != nil else {
+            fatalError("Please check the SAMPLE_PP_BACKEND_PASSWORD build setting")
+        }
     }
     
     private func setupCardPicker(cards: [Card]) {

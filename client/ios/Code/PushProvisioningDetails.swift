@@ -5,6 +5,7 @@
 
 import Foundation
 import OSLog
+import PassKit
 
 /// This class demonstrates how to call the Stripe `push_provisioning_details` API
 /// without using the Stripe API
@@ -62,7 +63,7 @@ struct PushProvisioningDetails {
     /// - Parameter nonceSignature: The nonceSignature passed to the PKAddPaymentPassViewControllerDelegate.
     ///
     /// - Returns The dictionary of results. // TODO: turn this into a proper struct.
-    func retrieveDetails(cardId: String, certificates: [Data], nonce: Data, nonceSignature: Data) async -> [String: Any] {
+    func retrieveDetails(cardId: String, certificates: [Data], nonce: Data, nonceSignature: Data) async ->  PKAddPaymentPassRequest? {
 
         func hexadecimalString(for data: Data) -> String {
             return data.map { String(format: "%02hhx", $0) }.joined()
@@ -73,7 +74,7 @@ struct PushProvisioningDetails {
             
             guard let key = keyDict["secret"] as? String else {
                 log.error("ephemeral key is nil")
-                return [:]
+                return nil
             }
             
             var base64Certificates: [String] = []
@@ -111,12 +112,34 @@ struct PushProvisioningDetails {
                 log.info("status code: \(response.statusCode)")
             }
             
-            let obj = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-            return obj
+            let details = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+
+            guard let activationData = details["activation_data"] as? String else {
+                print("error: no activation data")
+                return nil
+            }
+            
+            guard let encryptedPassData = details["contents"] as? String else {
+                print("error: no encryptedPassData")
+                return nil
+            }
+            
+            guard let ephemeralPublicKey = details["ephemeral_public_key"] as? String else {
+                print("error: no ephemeralPublicKey")
+                return nil
+            }
+            
+            let passRequest = PKAddPaymentPassRequest()
+            passRequest.activationData = activationData.data(using: .utf8)
+            passRequest.encryptedPassData = encryptedPassData.data(using: .utf8)
+            passRequest.ephemeralPublicKey = ephemeralPublicKey.data(using: .utf8)
+
+            return passRequest
             
         } catch {
             log.error("\(error)")
-            return [:]
+
+            return nil
         }
     }
 

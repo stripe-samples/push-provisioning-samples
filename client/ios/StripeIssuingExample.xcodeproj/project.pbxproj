@@ -13,7 +13,10 @@
 		3D6678C52BF4076F00903682 /* ViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6678C42BF4076F00903682 /* ViewController+UITableView.swift */; };
 		3DBD4A4F2B1943A000DD41BD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD4A4E2B1943A000DD41BD /* README.md */; };
 		96119E092CF298ED006EFE9B /* WalletExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 96119DFF2CF298ED006EFE9B /* WalletExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9642CBB92CF6A1C4006301DD /* PushProvisioningDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9642CBB82CF6A1C4006301DD /* PushProvisioningDetails.swift */; };
+		9642CBBA2CF6ABC0006301DD /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797529D126370003B7F4 /* Server.swift */; };
+		9642CBBB2CF6AE16006301DD /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797329D126370003B7F4 /* Card.swift */; };
+		9642CBBF2CFA53D7006301DD /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 9642CBBE2CFA53D7006301DD /* Stripe */; };
+		9642CBC12CFA53D7006301DD /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 9642CBC02CFA53D7006301DD /* StripeApplePay */; };
 		9670797729D126370003B7F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797229D126370003B7F4 /* SceneDelegate.swift */; };
 		9670797829D126370003B7F4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797329D126370003B7F4 /* Card.swift */; };
 		9670797929D126370003B7F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9670797429D126370003B7F4 /* AppDelegate.swift */; };
@@ -22,6 +25,10 @@
 		9670797D29D126450003B7F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9670797C29D126450003B7F4 /* Assets.xcassets */; };
 		9670798229D1264F0003B7F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9670797E29D1264F0003B7F4 /* Main.storyboard */; };
 		9670798329D1264F0003B7F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9670798029D1264F0003B7F4 /* LaunchScreen.storyboard */; };
+		96BED8DC2CFAAAE000DAC494 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BED8DB2CFAAADF00DAC494 /* UniformTypeIdentifiers.framework */; };
+		96BED8E82CFAAAE000DAC494 /* AuthenticationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 96BED8D92CFAAADF00DAC494 /* AuthenticationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		96BED8F22CFBA1C300DAC494 /* PushProvisioningDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BED8F12CFBA1C300DAC494 /* PushProvisioningDetails.swift */; };
+		96BED8F32CFBA1C300DAC494 /* PushProvisioningDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BED8F12CFBA1C300DAC494 /* PushProvisioningDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +39,13 @@
 			remoteGlobalIDString = 96119DFE2CF298ED006EFE9B;
 			remoteInfo = WalletExtension;
 		};
+		96BED8E62CFAAAE000DAC494 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96E74BB3295B8232009278D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96BED8D82CFAAADF00DAC494;
+			remoteInfo = AuthenticationExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +55,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				96BED8E82CFAAAE000DAC494 /* AuthenticationExtension.appex in Embed Foundation Extensions */,
 				96119E092CF298ED006EFE9B /* WalletExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -56,7 +71,6 @@
 		3DBD4A4E2B1943A000DD41BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = BuildSettings.xcconfig; path = SupportingFiles/BuildSettings.xcconfig; sourceTree = "<group>"; };
 		96119DFF2CF298ED006EFE9B /* WalletExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WalletExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9642CBB82CF6A1C4006301DD /* PushProvisioningDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushProvisioningDetails.swift; sourceTree = "<group>"; };
 		9670797229D126370003B7F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = Code/SceneDelegate.swift; sourceTree = "<group>"; };
 		9670797329D126370003B7F4 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Code/Card.swift; sourceTree = "<group>"; };
 		9670797429D126370003B7F4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Code/AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +81,9 @@
 		9670798129D1264F0003B7F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9670798429D1266D0003B7F4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SupportingFiles/Info.plist; sourceTree = "<group>"; };
 		9670798529D1266D0003B7F4 /* StripeIssuingExample.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = StripeIssuingExample.entitlements; path = SupportingFiles/StripeIssuingExample.entitlements; sourceTree = "<group>"; };
+		96BED8D92CFAAADF00DAC494 /* AuthenticationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AuthenticationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		96BED8DB2CFAAADF00DAC494 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
+		96BED8F12CFBA1C300DAC494 /* PushProvisioningDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PushProvisioningDetails.swift; path = Code/PushProvisioningDetails.swift; sourceTree = "<group>"; };
 		96E74BBB295B8232009278D7 /* StripeIssuingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StripeIssuingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,10 +95,18 @@
 			);
 			target = 96119DFE2CF298ED006EFE9B /* WalletExtension */;
 		};
+		96BED8E92CFAAAE000DAC494 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 96BED8D82CFAAADF00DAC494 /* AuthenticationExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		96119E002CF298ED006EFE9B /* WalletExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (96119E0D2CF298ED006EFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WalletExtension; sourceTree = "<group>"; };
+		96BED8DD2CFAAAE000DAC494 /* AuthenticationExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (96BED8E92CFAAAE000DAC494 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = AuthenticationExtension; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +117,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96BED8D62CFAAADF00DAC494 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96BED8DC2CFAAAE000DAC494 /* UniformTypeIdentifiers.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E74BB8295B8232009278D7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9642CBBF2CFA53D7006301DD /* Stripe in Frameworks */,
+				9642CBC12CFA53D7006301DD /* StripeApplePay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +143,7 @@
 				9670797429D126370003B7F4 /* AppDelegate.swift */,
 				9670797329D126370003B7F4 /* Card.swift */,
 				3D3C523B2B02CF12008AF8EE /* CardPage.swift */,
-				9642CBB82CF6A1C4006301DD /* PushProvisioningDetails.swift */,
+				96BED8F12CFBA1C300DAC494 /* PushProvisioningDetails.swift */,
 				9670797229D126370003B7F4 /* SceneDelegate.swift */,
 				9670797529D126370003B7F4 /* Server.swift */,
 				9670797629D126370003B7F4 /* ViewController.swift */,
@@ -139,6 +174,14 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		96BED8DA2CFAAADF00DAC494 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96BED8DB2CFAAADF00DAC494 /* UniformTypeIdentifiers.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		96E74BB2295B8232009278D7 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +190,8 @@
 				9627B52929D1258F0063060E /* Resources */,
 				9627B52A29D125940063060E /* SupportingFiles */,
 				96119E002CF298ED006EFE9B /* WalletExtension */,
+				96BED8DD2CFAAAE000DAC494 /* AuthenticationExtension */,
+				96BED8DA2CFAAADF00DAC494 /* Frameworks */,
 				96E74BBC295B8232009278D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,6 +201,7 @@
 			children = (
 				96E74BBB295B8232009278D7 /* StripeIssuingExample.app */,
 				96119DFF2CF298ED006EFE9B /* WalletExtension.appex */,
+				96BED8D92CFAAADF00DAC494 /* AuthenticationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +231,28 @@
 			productReference = 96119DFF2CF298ED006EFE9B /* WalletExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		96BED8D82CFAAADF00DAC494 /* AuthenticationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96BED8EA2CFAAAE000DAC494 /* Build configuration list for PBXNativeTarget "AuthenticationExtension" */;
+			buildPhases = (
+				96BED8D52CFAAADF00DAC494 /* Sources */,
+				96BED8D62CFAAADF00DAC494 /* Frameworks */,
+				96BED8D72CFAAADF00DAC494 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				96BED8DD2CFAAAE000DAC494 /* AuthenticationExtension */,
+			);
+			name = AuthenticationExtension;
+			packageProductDependencies = (
+			);
+			productName = AuthenticationExtension;
+			productReference = 96BED8D92CFAAADF00DAC494 /* AuthenticationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		96E74BBA295B8232009278D7 /* StripeIssuingExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96E74BCF295B8234009278D7 /* Build configuration list for PBXNativeTarget "StripeIssuingExample" */;
@@ -198,9 +266,12 @@
 			);
 			dependencies = (
 				96119E082CF298ED006EFE9B /* PBXTargetDependency */,
+				96BED8E72CFAAAE000DAC494 /* PBXTargetDependency */,
 			);
 			name = StripeIssuingExample;
 			packageProductDependencies = (
+				9642CBBE2CFA53D7006301DD /* Stripe */,
+				9642CBC02CFA53D7006301DD /* StripeApplePay */,
 			);
 			productName = StripeIssuingExample;
 			productReference = 96E74BBB295B8232009278D7 /* StripeIssuingExample.app */;
@@ -220,6 +291,9 @@
 						CreatedOnToolsVersion = 16.1;
 						LastSwiftMigration = 1610;
 					};
+					96BED8D82CFAAADF00DAC494 = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					96E74BBA295B8232009278D7 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -235,6 +309,7 @@
 			);
 			mainGroup = 96E74BB2295B8232009278D7;
 			packageReferences = (
+				9642CBBD2CFA53D7006301DD /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
 			);
 			productRefGroup = 96E74BBC295B8232009278D7 /* Products */;
 			projectDirPath = "";
@@ -242,12 +317,20 @@
 			targets = (
 				96E74BBA295B8232009278D7 /* StripeIssuingExample */,
 				96119DFE2CF298ED006EFE9B /* WalletExtension */,
+				96BED8D82CFAAADF00DAC494 /* AuthenticationExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		96119DFD2CF298ED006EFE9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96BED8D72CFAAADF00DAC494 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -273,6 +356,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9642CBBA2CF6ABC0006301DD /* Server.swift in Sources */,
+				96BED8F32CFBA1C300DAC494 /* PushProvisioningDetails.swift in Sources */,
+				9642CBBB2CF6AE16006301DD /* Card.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96BED8D52CFAAADF00DAC494 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +377,7 @@
 				9670797B29D126370003B7F4 /* ViewController.swift in Sources */,
 				3D6678C32BF401AB00903682 /* ViewController+PKAddPaymentPassViewControllerDelegate.swift in Sources */,
 				9670797929D126370003B7F4 /* AppDelegate.swift in Sources */,
-				9642CBB92CF6A1C4006301DD /* PushProvisioningDetails.swift in Sources */,
+				96BED8F22CFBA1C300DAC494 /* PushProvisioningDetails.swift in Sources */,
 				3D6678C52BF4076F00903682 /* ViewController+UITableView.swift in Sources */,
 				9670797829D126370003B7F4 /* Card.swift in Sources */,
 				9670797A29D126370003B7F4 /* Server.swift in Sources */,
@@ -299,6 +392,11 @@
 			isa = PBXTargetDependency;
 			target = 96119DFE2CF298ED006EFE9B /* WalletExtension */;
 			targetProxy = 96119E072CF298ED006EFE9B /* PBXContainerItemProxy */;
+		};
+		96BED8E72CFAAAE000DAC494 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96BED8D82CFAAADF00DAC494 /* AuthenticationExtension */;
+			targetProxy = 96BED8E62CFAAAE000DAC494 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -332,6 +430,7 @@
 /* Begin XCBuildConfiguration section */
 		96119E0B2CF298ED006EFE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -367,6 +466,7 @@
 		};
 		96119E0C2CF298ED006EFE9B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -390,6 +490,71 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest.walletextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		96BED8EB2CFAAAE000DAC494 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExtension/StripeIssuingExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AuthenticationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AuthenticationExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest.AuthenticationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96BED8EC2CFAAAE000DAC494 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = AuthenticationExtension/StripeIssuingExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AuthenticationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AuthenticationExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest.AuthenticationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -462,6 +627,7 @@
 		};
 		96E74BCE295B8234009278D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -517,6 +683,7 @@
 		};
 		96E74BD0295B8234009278D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -546,6 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG USE_STRIPE_SDK";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -554,6 +722,7 @@
 		};
 		96E74BD1295B8234009278D7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFC770A2AE3B09A0081C5B0 /* BuildSettings.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -583,6 +752,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stripe.pushprovisioningtest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = USE_STRIPE_SDK;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -597,6 +767,15 @@
 			buildConfigurations = (
 				96119E0B2CF298ED006EFE9B /* Debug */,
 				96119E0C2CF298ED006EFE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96BED8EA2CFAAAE000DAC494 /* Build configuration list for PBXNativeTarget "AuthenticationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96BED8EB2CFAAAE000DAC494 /* Debug */,
+				96BED8EC2CFAAAE000DAC494 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -620,6 +799,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9642CBBD2CFA53D7006301DD /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9642CBBE2CFA53D7006301DD /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9642CBBD2CFA53D7006301DD /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = Stripe;
+		};
+		9642CBC02CFA53D7006301DD /* StripeApplePay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9642CBBD2CFA53D7006301DD /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeApplePay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96E74BB3295B8232009278D7 /* Project object */;
 }
