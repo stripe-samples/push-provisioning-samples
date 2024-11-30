@@ -43,7 +43,14 @@ struct PushProvisioningDetails {
     }()
     
     /// Our "server," which mimics your back end server. We need it to get an ephemeral key.
-    let server = Server()
+    let server: Server
+    
+    // MARK: - Init
+    
+    /// Allows a properly configured server to be passed in
+    init(server: Server) {
+        self.server = server
+    }
     
     // MARK: - API
     
