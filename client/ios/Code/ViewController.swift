@@ -14,7 +14,7 @@ import Stripe
 /// This class illustrates, as simply as possible, how to perform push provisioning in iOS using Stripe Issuing.
 /// It uses the Stripe SDK and has USE_STRIPE_SDK defined as an Active Compilation Condition.
 /// If you're interested in seeing how it's done without the SDK, look at the Wallet Extension.
-class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Properties
     
@@ -161,26 +161,6 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
         self.present(controller!, animated: true, completion: nil)
     }
 
-    // MARK: - STPIssuingCardEphemeralKeyProvider
-
-    /// Needed by `STPPushProvisioningContext` to provision a card as described here:
-    /// https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#provision-a-card
-    func createIssuingCardKey(
-        withAPIVersion apiVersion: String,
-        completion: @escaping STPJSONResponseCompletionBlock
-    ) {
-        Task {
-            do {
-                let key = try await server.retrieveEphemeralKey(apiVersion, cardId: card!.id)
-                log.info("got ephemeral key")
-                completion(key, nil)
-            } catch {
-                log.error("createIssuingCardKey received: \(error, privacy: .public)")
-                completion(nil, error)
-            }
-        }
-    }
-
     // MARK: - Helpers
     
     private func alertError(_ message: String, title: String = "Error", moreActions: UIAlertAction...) {
@@ -291,6 +271,32 @@ class ViewController: UIViewController, STPIssuingCardEphemeralKeyProvider, UISc
         }
     }
 }
+
+#if USE_STRIPE_SDK
+extension ViewController: STPIssuingCardEphemeralKeyProvider {
+    
+    // MARK: - STPIssuingCardEphemeralKeyProvider
+
+    /// Needed by `STPPushProvisioningContext` to provision a card as described here:
+    /// https://stripe.com/docs/issuing/cards/digital-wallets?platform=iOS#provision-a-card
+    func createIssuingCardKey(
+        withAPIVersion apiVersion: String,
+        completion: @escaping STPJSONResponseCompletionBlock
+    ) {
+        Task {
+            do {
+                let key = try await server.retrieveEphemeralKey(apiVersion, cardId: card!.id)
+                log.info("got ephemeral key")
+                completion(key, nil)
+            } catch {
+                log.error("createIssuingCardKey received: \(error, privacy: .public)")
+                completion(nil, error)
+            }
+        }
+    }
+}
+
+#endif
 
 extension ViewController {
     
