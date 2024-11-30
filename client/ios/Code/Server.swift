@@ -21,7 +21,6 @@ class Server: NSObject, URLSessionTaskDelegate {
         case genericError(_ message: String)
     }
     
-    
     // MARK: - Properties
     
     /// The address to find the ruby server at. As shipped, the server

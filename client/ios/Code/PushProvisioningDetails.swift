@@ -8,7 +8,9 @@ import OSLog
 import PassKit
 
 /// This class demonstrates how to call the Stripe `push_provisioning_details` API
-/// without using the Stripe API
+/// without using the Stripe API. The API is documented here:
+///
+/// https://docs.stripe.com/api/issuing/push-provisioning-details -- access may be gated
 struct PushProvisioningDetails {
     
     // MARK: - Statics
@@ -18,7 +20,7 @@ struct PushProvisioningDetails {
     
     // MARK: - Properties
     
-    /// Ensures log messages go to console.
+    /// Ensures log messages go to console. Useful when running from Testflight.
     private var log = Logger()
     
     /// Creates a CharacterSet from RFC 3986 allowed characters.
@@ -77,6 +79,9 @@ struct PushProvisioningDetails {
         }
 
         do {
+            
+            // First, we need to get the ephemeral key from our backend
+            
             let keyDict = try await server.retrieveEphemeralKey(PushProvisioningDetails.APIVersion, cardId: cardId)
             
             guard let key = keyDict["secret"] as? String else {
@@ -97,7 +102,8 @@ struct PushProvisioningDetails {
                 ]
             ]
             
-            // https://docs.stripe.com/api/issuing/push-provisioning-details -- access may be gated
+            // Now call `push_provisioning_details`. Stripe recommends calling this from your
+            // app, rather than your backend, and with the ephemeral key.
             
             let url = URL(string: "https://api.stripe.com/v1/issuing/cards/\(cardId)/push_provisioning_details")!
             var request = URLRequest(url: url)
@@ -121,18 +127,10 @@ struct PushProvisioningDetails {
             
             let details = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
 
-            guard let activationData = details["activation_data"] as? String else {
-                print("error: no activation data")
-                return nil
-            }
-            
-            guard let encryptedPassData = details["contents"] as? String else {
-                print("error: no encryptedPassData")
-                return nil
-            }
-            
-            guard let ephemeralPublicKey = details["ephemeral_public_key"] as? String else {
-                print("error: no ephemeralPublicKey")
+            guard let activationData = details["activation_data"] as? String,
+                    let encryptedPassData = details["contents"] as? String,
+                  let ephemeralPublicKey = details["ephemeral_public_key"] as? String else {
+                log.error("error: missing data from response")
                 return nil
             }
             

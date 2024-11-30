@@ -41,11 +41,9 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate {
                 log.error("nil card")
                 return
             }
-            log.info("walletfoo about to retrieving details")
+
             let ppd = PushProvisioningDetails(server: server)
-            log.info("walletfoo retrieving details")
             let request = await ppd.retrieveDetails(cardId: card.id, certificates: certificates, nonce: nonce, nonceSignature: nonceSignature)
-            log.info("walletfoo calling completion handler")
             if let request = request {
                 handler(request)
             }

@@ -11,9 +11,9 @@ import UIKit
 import Stripe
 #endif
 
-/// This class illustrates, as simply as possible, how to perform push provisioning in iOS using Stripe Issuing.
+/// This class illustrates, as simply as reasonable, how to perform push provisioning in iOS using Stripe Issuing.
 /// It uses the Stripe SDK and has USE_STRIPE_SDK defined as an Active Compilation Condition.
-/// If you're interested in seeing how it's done without the SDK, look at the Wallet Extension.
+/// If you're interested in seeing how it's done without the SDK, undefine USE_STRIPE_SDK.
 class ViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Properties
