@@ -93,6 +93,9 @@ struct Card: Codable, Equatable {
     /// primaryAccountIdentifier.
     static func isInWallet(primaryAccountIdentifier pai: String) -> InWallet {
         let passLib = PKPassLibrary()
+        
+        // Note: if you are not seeing passes that you expect here, contact Stripe
+        // to ensure we've configured card metadata correctly on partner systems.
         let match = { (pass: PKPass) in
             pass.secureElementPass?.primaryAccountIdentifier == pai
         }
