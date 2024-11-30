@@ -6,14 +6,13 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-// /$()/ is to prevent // from being parsed as a comment
-// e.g. https:/$()/push-provisioning-samples.onrender.com
-SAMPLE_PP_BACKEND_URL = http://192.168.68.107:4242
+/// IP address of local server
+SAMPLE_PP_BACKEND_URL = http://42.42.42.42:4242
 
-// should match the username configured on the above backend
+/// Should match the username configured on the above backend
 SAMPLE_PP_BACKEND_USERNAME = cardholder
 
-// should match the password configured on the above backend
+/// should match the password configured on the above backend
 SAMPLE_PP_BACKEND_PASSWORD = secret
 
 #include? "Server.private.xcconfig"
