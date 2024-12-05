@@ -46,6 +46,7 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate {
             let request = await ppd.retrieveDetails(cardId: card.id, certificates: certificates, nonce: nonce, nonceSignature: nonceSignature)
             if let request = request {
                 handler(request)
+            } else {
             }
         }
 #endif
@@ -61,8 +62,11 @@ extension ViewController : PKAddPaymentPassViewControllerDelegate {
         textView.text = ""
 
         if let error = error {
+            
             logAddPaymentPass(error: error)
+
         } else if let pass: PKSecureElementPass = pass {
+            
             // Update our local cache of the newly-added card if it had a nil `primaryAccountIdentifier` so it
             // matches future `PKPassLibrary().passes()` results. Otherwise, the stale cache will give the mistaken
             // impression that this card isn't in Apple Pay, causing the `addPassButton` to erroneously show for this

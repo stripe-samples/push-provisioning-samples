@@ -127,17 +127,22 @@ struct PushProvisioningDetails {
             
             let details = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
 
-            guard let activationData = details["activation_data"] as? String,
-                    let encryptedPassData = details["contents"] as? String,
-                  let ephemeralPublicKey = details["ephemeral_public_key"] as? String else {
+
+            guard let activationString = details["activation_data"] as? String,
+                    let encryptedPassString = details["contents"] as? String,
+                  let ephemeralPublicKeyString = details["ephemeral_public_key"] as? String else {
                 log.error("error: missing data from response")
                 return nil
             }
             
+            let activationData = Data(base64Encoded: activationString)
+            let encryptedPassData = Data(base64Encoded: encryptedPassString)
+            let ephemeralPublicKeyData = Data(base64Encoded: ephemeralPublicKeyString)
+
             let passRequest = PKAddPaymentPassRequest()
-            passRequest.activationData = activationData.data(using: .utf8)
-            passRequest.encryptedPassData = encryptedPassData.data(using: .utf8)
-            passRequest.ephemeralPublicKey = ephemeralPublicKey.data(using: .utf8)
+            passRequest.activationData = activationData
+            passRequest.encryptedPassData = encryptedPassData
+            passRequest.ephemeralPublicKey = ephemeralPublicKeyData
 
             return passRequest
             
