@@ -14,6 +14,11 @@ Stripe.set_app_info(
   version: '0.0.1',
   url: 'https://github.com/stripe-samples/push-provisioning'
 )
+# Don't put any keys in code. Use an environment variable (as shown
+# here) or secrets vault to supply keys to your integration.
+#
+# See https://docs.stripe.com/keys-best-practices and find your
+# keys at https://dashboard.stripe.com/apikeys.
 Stripe.api_key = ENV['STRIPE_SECRET_KEY']
 
 set :port, 4242
