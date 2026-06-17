@@ -17,11 +17,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tapandpay.TapAndPay
 import com.stripe.android.pushProvisioning.PushProvisioningActivity
 import com.stripe.android.pushProvisioning.PushProvisioningActivityStarter
+import com.stripe.android.pushProvisioning.PushProvisioningUtils
 import com.stripe.android.pushprovisioning.databinding.MainActivityBinding
 import com.stripe.android.pushprovisioning.network.BackendPushProvisioningEphemeralKeyProvider
 import com.stripe.android.pushprovisioning.network.toNetwork
 import com.stripe.android.pushprovisioning.network.toTsp
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,13 +79,26 @@ class MainActivity : AppCompatActivity() {
                 return@launch
             }
 
+            val canAddResults = notYetTokenized.map { cardTokenizationStatus ->
+                async { canAddCardToWallet(cardTokenizationStatus) }
+            }.awaitAll()
+            val displayableCards = notYetTokenized.zip(canAddResults)
+                .filter { (_, canAdd) -> canAdd }
+                .map { (cardTokenizationStatus, _) -> cardTokenizationStatus }
+
+            if (displayableCards.isEmpty()) {
+                binding.cardPicker.isInvisible = true
+                binding.resultPlaceholder.text = getString(R.string.no_eligible_cards)
+                return@launch
+            }
+
             binding.cardPicker.isInvisible = false
             binding.resultPlaceholder.text =
-                getString(R.string.cards_eligible_for_push_provisioning, notYetTokenized.size)
+                getString(R.string.cards_eligible_for_push_provisioning, displayableCards.size)
             // TODO: consider rendering the cards in a a more polished way
-            val canScroll = notYetTokenized.size > 1
+            val canScroll = displayableCards.size > 1
             binding.cardPicker.layoutManager = HorizontalCardLayoutManager(this@MainActivity, canScroll)
-            binding.cardPicker.adapter = CardPickerAdapter(this@MainActivity, notYetTokenized) { cardTokenizationStatus ->
+            binding.cardPicker.adapter = CardPickerAdapter(this@MainActivity, displayableCards) { cardTokenizationStatus ->
                 lifecycleScope.launch {
                     provision(cardTokenizationStatus)
                 }
@@ -116,11 +134,14 @@ class MainActivity : AppCompatActivity() {
         // TODO: add javadoc explaining args to our sdk. Ideally the javadoc would be included in the SDK.
         val ephemeralKeyProvider = BackendPushProvisioningEphemeralKeyProvider(card.id, SampleApp.instance.backendApi)
         val enableLogs = true
+        // Derive isBounceProvisioned based on whether this activity was launched from a Google Wallet intent.
+        // See https://developers.google.com/pay/issuers/apis/push-provisioning/android/bounce_provisioning for more details.
+        var isBounceProvisioned = false
         val args = PushProvisioningActivityStarter.Args(
             card.cardholderName,
             ephemeralKeyProvider,
             enableLogs
-        )
+        ).setIsBounceProvisioned(isBounceProvisioned)
         PushProvisioningActivityStarter(this, args).startForResult()
     }
 
@@ -185,6 +206,29 @@ class MainActivity : AppCompatActivity() {
             brand.toNetwork(),
             REQUEST_CODE_YELLOW_PATH_TOKENIZE,
         )
+    }
+
+    private suspend fun canAddCardToWallet(cardTokenizationStatus: CardTokenizationStatus): Boolean {
+        val card = cardTokenizationStatus.card
+        val ephemeralKeyProvider = BackendPushProvisioningEphemeralKeyProvider(card.id, SampleApp.instance.backendApi)
+        return suspendCancellableCoroutine { continuation ->
+            PushProvisioningUtils.canAddCardToWallet(
+                this,
+                ephemeralKeyProvider,
+                object : PushProvisioningUtils.CanAddCardCallback {
+                    override fun onResult(canAddCard: Boolean, status: PushProvisioningUtils.CanAddCardStatus) {
+                        Log.i(TAG, "canAddCardToWallet: canAddCard=$canAddCard, status=$status")
+                        continuation.resume(canAddCard)
+                    }
+
+                    override fun onError(message: String) {
+                        Log.e(TAG, "canAddCardToWallet error: $message")
+                        continuation.resume(false)
+                    }
+                },
+                true
+            )
+        }
     }
 
     companion object {
