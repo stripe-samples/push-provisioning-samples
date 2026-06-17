@@ -118,11 +118,11 @@ dependencies {
     // Make sure the tapandpay_sdk directory contains the same version of play-services-tapandpay that this version of
     // stripe-android-issuing-push-provisioning depends on.
     // See https://central.sonatype.com/artifact/com.stripe/stripe-android-issuing-push-provisioning
-    implementation("com.stripe:stripe-android-issuing-push-provisioning:1.2.2")
+    implementation("com.stripe:stripe-android-issuing-push-provisioning:1.3.0")
 
-    // 18.3.3 also seems to work. Only the latest version is available to new users at
+    // 18.8.0 is the latest tested version and minimum version required.
     // https://developers.google.com/pay/issuers/apis/push-provisioning/android/releases
-    implementation("com.google.android.gms:play-services-tapandpay:18.3.3")
+    implementation("com.google.android.gms:play-services-tapandpay:18.8.0")
 
     // https://developers.google.com/android/guides/tasks#kotlin_coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.0")
