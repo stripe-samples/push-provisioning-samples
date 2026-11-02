@@ -1,3 +1,6 @@
 .env
 .idea
 *.iml
+# Local RubyGems cache (e.g. when HOME/GEM_SPEC_CACHE points here)
+.gem
+vendor/bundle
