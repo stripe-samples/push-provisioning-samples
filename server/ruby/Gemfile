@@ -7,6 +7,6 @@ gem "encrypted_cookie", "~> 0.0.4"
 gem 'json'
 gem "sinatra", "~> 4.0"
 gem 'sinatra-contrib'
-gem 'stripe'
+gem 'stripe', '~> 20.1'
 gem "puma", "~> 6.4"
 gem "rackup", "~> 2.1"
